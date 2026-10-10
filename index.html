@@ -839,15 +839,15 @@ h1, h2, h3, h4, .title, .page-title, .section-title {
       </div>
     </div>
     <div class="nav-title" data-i18n="navMain">MAIN</div>
-    <button class="nav-item active" data-page="home" onclick="tryNavigate('home')"><svg class="ui-icon"><use href="#i-home"></use></svg><span data-i18n="home">Home</span></button>
-    <button class="nav-item nav-stay" data-page="health-check" onclick="startHealthCheck()"><svg class="ui-icon"><use href="#i-check"></use></svg><span data-i18n="healthCheck">Health Check</span></button>
-    <button class="nav-item" data-page="mini-lesson" onclick="tryNavigate('mini-lesson')"><svg class="ui-icon"><use href="#i-book"></use></svg><span data-i18n="miniLesson">Mini Lesson</span></button>
-    <button class="nav-item" data-page="disease-library" onclick="tryNavigate('disease-library')"><svg class="ui-icon"><use href="#i-library"></use></svg><span data-i18n="diseaseLibrary">Disease Library</span></button>
-    <button class="nav-item" data-page="nearby" onclick="tryNavigate('nearby')"><svg class="ui-icon"><use href="#i-pin"></use></svg><span data-i18n="nearbyHealthcare">Nearby</span></button>
+    <button class="nav-item active" data-page="home" onclick="tryNavigate('home')"><svg class="ui-icon"><use href="#i-home"></use></svg><span data-i18n="home">Trang chủ</span></button>
+    <button class="nav-item nav-stay" data-page="health-check" onclick="startHealthCheck()"><svg class="ui-icon"><use href="#i-check"></use></svg><span data-i18n="healthCheck">Kiểm tra sức khỏe</span></button>
+    <button class="nav-item" data-page="mini-lesson" onclick="tryNavigate('mini-lesson')"><svg class="ui-icon"><use href="#i-book"></use></svg><span data-i18n="miniLesson">Bài học ngắn</span></button>
+    <button class="nav-item" data-page="disease-library" onclick="tryNavigate('disease-library')"><svg class="ui-icon"><use href="#i-library"></use></svg><span data-i18n="diseaseLibrary">Thư viện bệnh học</span></button>
+    <button class="nav-item" data-page="nearby" onclick="tryNavigate('nearby')"><svg class="ui-icon"><use href="#i-pin"></use></svg><span data-i18n="nearbyHealthcare">Gần đây</span></button>
     <div class="nav-title" data-i18n="navAccount">ACCOUNT</div>
-    <button class="nav-item" data-page="history" onclick="tryNavigate('history')"><svg class="ui-icon"><use href="#i-clock"></use></svg><span data-i18n="history">History</span></button>
-    <button class="nav-item" data-page="profile" onclick="tryNavigate('profile')"><svg class="ui-icon"><use href="#i-user"></use></svg><span data-i18n="profile">Profile</span></button>
-    <button class="nav-item" data-page="emergency" onclick="tryNavigateEmergency()"><svg class="ui-icon"><use href="#i-alert"></use></svg><span data-i18n="emergency">Emergency</span></button>
+    <button class="nav-item" data-page="history" onclick="tryNavigate('history')"><svg class="ui-icon"><use href="#i-clock"></use></svg><span data-i18n="history">Lịch sử</span></button>
+    <button class="nav-item" data-page="profile" onclick="tryNavigate('profile')"><svg class="ui-icon"><use href="#i-user"></use></svg><span data-i18n="profile">Hồ sơ</span></button>
+    <button class="nav-item" data-page="emergency" onclick="tryNavigateEmergency()"><svg class="ui-icon"><use href="#i-alert"></use></svg><span data-i18n="emergency">Khẩn cấp</span></button>
   </aside>
   <button type="button" class="sidebar-collapse-btn" id="sidebarCollapseBtn" onclick="toggleSidebarCollapse()" title="Thu gọn / Mở rộng menu" aria-label="Toggle sidebar">‹</button>
 
@@ -876,39 +876,39 @@ h1, h2, h3, h4, .title, .page-title, .section-title {
       <section class="screen active" id="page-home">
         <div class="home-hero">
           <div class="home-hero-main">
-            <div class="eyebrow" data-i18n="healthEducation">HEALTH EDUCATION PLATFORM</div>
-            <h1><span data-i18n="heroTitle1">Understand your symptoms.</span><br><span data-i18n="heroTitle2">Make informed next steps.</span></h1>
-            <p class="lead muted" data-i18n="heroDescription">HealthGuide AI helps you organize symptoms and explore educational health information.</p>
+            <div class="eyebrow" data-i18n="healthEducation">NỀN TẢNG GIÁO DỤC SỨC KHỎE</div>
+            <h1><span data-i18n="heroTitle1">Hiểu triệu chứng.</span><br><span data-i18n="heroTitle2">Biết bước tiếp theo.</span></h1>
+            <p class="lead muted" data-i18n="heroDescription">HealthGuide AI giúp bạn sắp xếp triệu chứng và tìm hiểu thông tin sức khỏe.</p>
             <div class="home-actions">
-              <button class="btn btn-primary" onclick="startHealthCheck()" data-i18n="startHealthCheck">Start Health Check →</button>
+              <button class="btn btn-primary" onclick="startHealthCheck()" data-i18n="startHealthCheck">Bắt đầu kiểm tra →</button>
               <button class="btn btn-secondary" onclick="tryNavigate('disease-library')" data-i18n="diseaseLibrary">Disease Library</button>
             </div>
           </div>
         </div>
 
-        <div class="home-section-title" data-i18n="exploreTools">Explore tools</div>
+        <div class="home-section-title" data-i18n="exploreTools">Công cụ khác</div>
         <div class="home-grid">
           <div class="home-card" onclick="tryNavigate('mini-lesson')">
             <div class="home-icon"><svg class="ui-icon"><use href="#i-book"></use></svg></div>
-            <div><h3 data-i18n="miniLesson">Mini Lesson</h3><p class="muted" data-i18n="miniLessonDesc">Short lessons under 3 minutes.</p></div>
+            <div><h3 data-i18n="miniLesson">Mini Lesson</h3><p class="muted" data-i18n="miniLessonDesc">Bài học ngắn dưới 3 phút.</p></div>
           </div>
           <div class="home-card" onclick="tryNavigate('disease-library')">
             <div class="home-icon"><svg class="ui-icon"><use href="#i-library"></use></svg></div>
-            <div><h3 data-i18n="diseaseLibrary">Disease Library</h3><p class="muted" data-i18n="diseaseLibraryDesc">Explore common conditions.</p></div>
+            <div><h3 data-i18n="diseaseLibrary">Disease Library</h3><p class="muted" data-i18n="diseaseLibraryDesc">Khám phá các tình trạng phổ biến.</p></div>
           </div>
           <div class="home-card" onclick="tryNavigate('nearby')">
             <div class="home-icon"><svg class="ui-icon"><use href="#i-pin"></use></svg></div>
-            <div><h3 data-i18n="nearbyHealthcare">Nearby</h3><p class="muted" data-i18n="nearbyDesc">Find healthcare nearby.</p></div>
+            <div><h3 data-i18n="nearbyHealthcare">Nearby</h3><p class="muted" data-i18n="nearbyDesc">Tìm cơ sở y tế gần bạn.</p></div>
           </div>
           <div class="home-card" onclick="tryNavigateEmergency()">
             <div class="home-icon"><svg class="ui-icon"><use href="#i-alert"></use></svg></div>
-            <div><h3 data-i18n="emergency">Emergency</h3><p class="muted" data-i18n="emergencyDesc">First-aid guidance.</p></div>
+            <div><h3 data-i18n="emergency">Emergency</h3><p class="muted" data-i18n="emergencyDesc">Hướng dẫn sơ cứu.</p></div>
           </div>
         </div>
 
         <div class="home-disclaimer">
           <span><svg class="ui-icon" style="color:#F39319"><use href="#i-alert"></use></svg></span>
-          <div data-i18n="homeDisclaimer">HealthGuide AI is a high-school educational prototype. It does not replace doctors, hospitals, or emergency services. In a real emergency, call 115 immediately.</div>
+          <div data-i18n="homeDisclaimer">HealthGuide AI là sản phẩm giáo dục do học sinh thực hiện, không thay thế bác sĩ hay dịch vụ cấp cứu. Trường hợp khẩn cấp, gọi 115.</div>
         </div>
       </section>
 
@@ -978,13 +978,47 @@ h1, h2, h3, h4, .title, .page-title, .section-title {
                 <path class="body-part body-map-hit-area" data-area="Abdomen" d="M378 548 Q512 505 646 548 L626 702 Q512 758 398 702 Z" onclick="selectBodyPart(this)"/>
                 <path class="body-part body-map-hit-area" d="M408 284 Q376 280 344 292 Q314 304 304 338 Q296 368 306 410 L298 462 Q292 505 286 542 Q274 585 268 631 L262 704 Q258 736 249 774 Q243 801 246 831 Q249 859 267 875 Q284 889 300 880 Q311 870 304 850 L294 823 Q289 806 294 786 Q306 765 322 738 Q339 704 354 660 Q368 617 380 574 Q393 532 381 480 Q372 437 373 411 Q379 382 398 353 Q416 322 408 284 Z" data-area="Arm" data-side="right" onclick="selectBodyPart(this)" aria-label="Right arm"/><path class="body-part body-map-hit-area" d="M408 284 Q376 280 344 292 Q314 304 304 338 Q296 368 306 410 L298 462 Q292 505 286 542 Q274 585 268 631 L262 704 Q258 736 249 774 Q243 801 246 831 Q249 859 267 875 Q284 889 300 880 Q311 870 304 850 L294 823 Q289 806 294 786 Q306 765 322 738 Q339 704 354 660 Q368 617 380 574 Q393 532 381 480 Q372 437 373 411 Q379 382 398 353 Q416 322 408 284 Z" transform="translate(1024 0) scale(-1 1)" data-area="Arm" data-side="left" onclick="selectBodyPart(this)" aria-label="Left arm"/>
                 <path class="body-part body-map-hit-area" d="M398 720 Q450 733 503 758 L503 1005 Q496 1076 476 1140 L450 1300 L455 1368 Q458 1394 438 1416 Q417 1435 394 1426 L361 1415 Q348 1410 357 1390 L379 1357 L389 1315 L374 1240 Q360 1170 378 1096 L390 1026 Q369 965 365 902 L365 820 Q365 760 398 720Z" data-area="Leg" data-side="right" onclick="selectBodyPart(this)" aria-label="Right leg"/><path class="body-part body-map-hit-area" d="M626 720 Q574 733 521 758 L521 1005 Q528 1076 548 1140 L574 1300 L569 1368 Q566 1394 586 1416 Q607 1435 630 1426 L663 1415 Q676 1410 667 1390 L645 1357 L635 1315 L650 1240 Q664 1170 646 1096 L634 1026 Q655 965 659 902 L659 820 Q659 760 626 720Z" data-area="Leg" data-side="left" onclick="selectBodyPart(this)" aria-label="Left leg"/>
-              </svg></div></div><div class="anatomy-browser"><div class="anatomy-sided a photo (optional).</p>
+              </svg></div></div><div class="anatomy-browser"><div class="anatomy-side-switch" role="tablist" aria-label="Body side"><button type="button" id="anatomyFrontBtn" class="active" onclick="setAnatomySide('front')">Mặt trước</button><button type="button" id="anatomyBackBtn" onclick="setAnatomySide('back')">Mặt sau</button></div></div>
+          <div class="selected-display" id="selectedDisplay" data-i18n="noAreaSelected">Chưa chọn vùng nào</div>
+          <div class="action-row">
+            <button class="btn btn-secondary" onclick="requestExitCheck('home')" data-i18n="exitCheck">Exit check</button>
+            <button class="btn btn-primary" id="btnToCamera" onclick="goToCamera()" disabled data-i18n="continue">Continue →</button>
+          </div>
+        </div>
+      </section>
+
+<section class="screen" id="page-body-detail"><div class="check-card">
+          <div class="eyebrow" data-i18n="step1">HEALTH CHECK · STEP 1/4</div><h2 id="armDetailTitle">Tay phải của bạn</h2><p class="muted body-step-note" id="armDetailHint"></p><div class="chest-view-toggle" id="chestViewToggle" hidden><button type="button" class="active" data-chest-view="skin" onclick="setChestView('skin')" data-i18n="skinSurface">Bề mặt da</button><button type="button" data-chest-view="inside" onclick="setChestView('inside')" data-i18n="simpleInside">Hình minh họa bên trong</button><span class="chest-view-note" data-i18n="noVesselsNote">Minh họa đơn giản · không có mạch máu</span></div><div class="body-detail-layout">
+            <div class="limb3d-stage" id="limb3DStage"><div class="limb3d-view" id="limb3DView"><canvas id="limb3DCanvas" aria-label="Mô hình 3D bộ phận cơ thể"></canvas><div class="limb3d-status" id="limb3DStatus"></div><div class="limb3d-help">Kéo hình để xoay · Chạm vào vùng để chọn</div></div></div><div><div class="selected-display" id="armSelectedDisplay" data-i18n="chooseArmRegion">Chọn vị trí trên hình</div><p class="muted" style="margin-bottom:10px" data-i18n="orChooseArmRegion">Hoặc chọn một vị trí:</p><div class="arm-detail-options" id="armDetailOptions">
+                <button class="area-chip" data-arm-region="upper" onclick="selectArmDetailArea('upper','Arm')" data-i18n="upperArm">Bắp tay</button><button class="area-chip" data-arm-region="elbow" onclick="selectArmDetailArea('elbow','Elbow')" data-i18n="elbowRegion">Khuỷu tay</button><button class="area-chip" data-arm-region="forearm" onclick="selectArmDetailArea('forearm','Arm')" data-i18n="forearm">Cẳng tay</button><button class="area-chip" data-arm-region="wrist" onclick="selectArmDetailArea('wrist','Hand')" data-i18n="wrist">Cổ tay</button><button class="area-chip" data-arm-region="hand" onclick="selectArmDetailArea('hand','Hand')" data-i18n="handRegion">Bàn tay</button>
+              </div></div></div><div class="action-row"><button class="btn btn-secondary" onclick="backToBodyMap()" data-i18n="backToBody">← Quay lại toàn thân</button><button class="btn btn-primary" id="btnArmContinue" onclick="goToCamera()" disabled data-i18n="continue">Tiếp tục →</button></div></div></section>
+            <section class="screen" id="page-camera">
+        <div class="check-card">
+          <div class="eyebrow" data-i18n="step2">HEALTH CHECK · STEP 2/4</div>
+          <h2 data-i18n="scanAffected">Scan affected area</h2>
+          <p class="muted" data-i18n="positionArea">Use live camera or upload a photo (optional).</p>
           <div class="progress"><span class="active"></span><span class="active"></span><span></span><span></span></div>
           <div class="camera-layout">
             <div class="camera-box" id="cameraBox">
-              <"camera-actions">
+              <video id="cameraVideo" autoplay playsinline></video>
+              <img id="uploadedImage" alt="">
+              <div class="camera-frame"></div>
+              <div class="camera-placeholder" id="cameraPlaceholder"><svg class="ui-icon" style="width:30px;height:30px"><use href="#i-camera"></use></svg><br><br><span data-i18n="cameraOff">Camera is off</span></div>
+            </div>
+            <div class="card">
+              <h3 data-i18n="cameraScanTitle">Camera & Photo</h3>
+              <div class="camera-actions">
                 <button class="btn btn-primary" id="cameraButton" onclick="openCamera()" data-i18n="openCamera">Open Camera</button>
-                <button class="btn btn-secondary" id="switchCameraBtn" onclick="switchCamera()" style="mera is currently off.</div>
+                <button class="btn btn-secondary" id="switchCameraBtn" onclick="switchCamera()" style="display:none" data-i18n="switchCam">Switch</button>
+                <button class="btn btn-secondary" id="stopCameraButton" onclick="stopCamera()" style="display:none" data-i18n="stopCamera">Stop</button>
+              </div>
+              <div style="margin-top:12px">
+                <label class="btn btn-secondary" style="display:inline-flex;cursor:pointer">
+                  <svg class="inline-icon"><use href="#i-upload"></use></svg><span data-i18n="uploadPhoto">Upload Photo</span>
+                  <input id="photoUploadInput" type="file" accept="image/*" style="display:none" onchange="handlePhotoUpload(event)">
+                </label>
+              </div>
+              <div class="camera-status" id="cameraStatus" data-i18n="cameraStatusOff">Camera is currently off.</div>
               <div id="cameraErrorBox" style="display:none;margin-top:10px;padding:12px;background:#fdecea;border:1px solid #f5c6c0;border-radius:10px;font-size:13px;color:#c0392b">
                 <div id="cameraErrorText"></div>
                 <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
@@ -1016,14 +1050,42 @@ h1, h2, h3, h4, .title, .page-title, .section-title {
               </div>
             </div>
             <div class="ai-chat-messages" id="aiChatMessages"></div>
-            <div class="quick-replies" id="q"btnToResult" onclick="goToResult()" disabled data-i18n="seeResult">See Result →</button>
+            <div class="quick-replies" id="quickReplies"></div>
+            <div class="ai-chat-input">
+              <input id="aiChatInput" data-i18n-placeholder="chatPlaceholder" placeholder="Type your answer...">
+              <button class="btn btn-primary" onclick="sendAIChatMessage()" data-i18n="send">Send</button>
+            </div>
           </div>
-          <p id="resultHint" class="muted" style="font-size:12px;margin-top:8px;text-align:right;display:none" data-i18n="finishChatFirst">Answer aeCondition">Possible related condition</div>
+          <div class="action-row">
+            <button class="btn btn-secondary" onclick="openPage('camera')" data-i18n="back">Back</button>
+            <button class="btn btn-primary" id="btnToResult" onclick="goToResult()" disabled data-i18n="seeResult">See Result →</button>
+          </div>
+          <p id="resultHint" class="muted" style="font-size:12px;margin-top:8px;text-align:right;display:none" data-i18n="finishChatFirst">Answer all questions to see the result.</p>
+        </div>
+      </section>
+
+      <section class="screen" id="page-results">
+        <div class="check-card">
+          <div class="eyebrow" data-i18n="step4">HEALTH CHECK · STEP 4/4</div>
+          <h2 data-i18n="referenceResult">Reference Result</h2>
+          <p class="muted" data-i18n="resultsSub">Tóm tắt dựa trên câu trả lời của bạn.</p>
+          <div class="progress"><span class="active"></span><span class="active"></span><span class="active"></span><span class="active"></span></div>
+          <!-- PAGE 1: condition first -->
+          <div class="result-view active" id="resultViewMain">
+            <div class="result-disease-card">
+              <div class="result-disease-label" data-i18n="possibleCondition">Possible related condition</div>
               <div class="result-disease-name" id="resultDiseaseName">—</div>
               <p class="result-disease-note" data-i18n="possibleConditionNote" style="display:none"></p>
             </div>
 
-   n="recommendedAction">Recommended action</span></div>
+            <div class="result-card" id="whyCardMain" style="border-color:#7188AA;background:#fffafa">
+              <div class="result-section-label"><span class="dot"></span> <span data-i18n="whyThisCondition">Why we suggest this</span></div>
+              <ul class="result-chips" id="resultWhyChips" style="margin-top:8px"></ul>
+              
+            </div>
+
+            <div class="result-action-card">
+              <div class="result-section-label"><span class="dot action"></span> <span data-i18n="recommendedAction">Recommended action</span></div>
               <p id="resultActionShort">-</p>
             </div>
 
@@ -1033,7 +1095,15 @@ h1, h2, h3, h4, .title, .page-title, .section-title {
             </div>
           </div>
 
-          <!-- PAGE 2: detailed analysis (no sup18n="whyThisCondition">Why we suggest this</span></div>
+          <!-- PAGE 2: detailed analysis (no supporting factors) -->
+          <div class="result-view" id="resultViewDetail">
+            <div class="result-card">
+              <div class="result-section-label"><span class="dot"></span> <span data-i18n="explanation">Analysis</span></div>
+              <p class="result-explain" id="resultExplanation">-</p>
+            </div>
+
+            <div class="result-card" style="border-color:#7188AA;background:#fffafa">
+              <div class="result-section-label"><span class="dot"></span> <span data-i18n="whyThisCondition">Why we suggest this</span></div>
               <ul class="result-chips" id="resultWhyChipsDetail" style="margin-top:8px"></ul>
               
             </div>
@@ -1078,17 +1148,30 @@ h1, h2, h3, h4, .title, .page-title, .section-title {
       <section class="screen" id="page-mini-lesson">
         <div class="eyebrow" data-i18n="lessonEyebrow">QUICK LEARNING</div>
         <h2 data-i18n="miniLesson">Mini Lesson</h2>
-        <p class="muted" data-i18n="miniLessonSub">Short lessons under 3 minutes.</p>
+        <p class="muted" data-i18n="miniLessonSub">Bài học ngắn dưới 3 phút.</p>
         <div class="lesson-grid">
           <div class="lesson-card" onclick="openLesson('cpr')"><span class="lesson-tag firstaid" data-i18n="tagFirstAid">FIRST AID</span><h3 data-i18n="lessonCprTitle">CPR Basics</h3><p class="muted" data-i18n="lessonCprDesc">Hands-only CPR.</p><div class="lesson-time">~2 <span data-i18n="min">min</span></div></div>
           <div class="lesson-card" onclick="openLesson('stroke')"><span class="lesson-tag emergency" data-i18n="tagEmergency">EMERGENCY</span><h3 data-i18n="lessonStrokeTitle">Spot a Stroke (FAST)</h3><p class="muted" data-i18n="lessonStrokeDesc">Recognize stroke signs.</p><div class="lesson-time">~2 <span data-i18n="min">min</span></div></div>
           <div class="lesson-card" onclick="openLesson('choking')"><span class="lesson-tag firstaid" data-i18n="tagFirstAid">FIRST AID</span><h3 data-i18n="lessonChokingTitle">Choking – Heimlich</h3><p class="muted" data-i18n="lessonChokingDesc">Help someone choking.</p><div class="lesson-time">~2 <span data-i18n="min">min</span></div></div>
-          <div class="lesson-card" onclick="openLesson('dengue')"><span class="lesson-tag common" data-i18n="tagCommon">COMMON</span><h3 data-i18n="lessonDengueTitle">16px"><button class="btn btn-secondary" onclick="closeLesson()" data-i18n="backToLessons">← Back to lessons</button></div>
+          <div class="lesson-card" onclick="openLesson('dengue')"><span class="lesson-tag common" data-i18n="tagCommon">COMMON</span><h3 data-i18n="lessonDengueTitle">Dengue Warning Signs</h3><p class="muted" data-i18n="lessonDengueDesc">When to seek care.</p><div class="lesson-time">~2.5 <span data-i18n="min">min</span></div></div>
+          <div class="lesson-card" onclick="openLesson('burn')"><span class="lesson-tag firstaid" data-i18n="tagFirstAid">FIRST AID</span><h3 data-i18n="lessonBurnTitle">Minor Burn Care</h3><p class="muted" data-i18n="lessonBurnDesc">Small burn care.</p><div class="lesson-time">~1.5 <span data-i18n="min">min</span></div></div>
+          <div class="lesson-card" onclick="openLesson('fever')"><span class="lesson-tag common" data-i18n="tagCommon">COMMON</span><h3 data-i18n="lessonFeverTitle">Fever at Home</h3><p class="muted" data-i18n="lessonFeverDesc">Manage mild fever.</p><div class="lesson-time">~2 <span data-i18n="min">min</span></div></div>
+        </div>
+        <div class="lesson-detail" id="lessonDetail" tabindex="-1" aria-live="polite">
+          <div class="lesson-content" id="lessonContent"></div>
+          <div style="margin-top:16px"><button class="btn btn-secondary" onclick="closeLesson()" data-i18n="backToLessons">← Back to lessons</button></div>
         </div>
       </section>
 
       <section class="screen" id="page-disease-library">
-        <div class="eyebrow" data-i18n      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div class="eyebrow" data-i18n="libraryEyebrow">KNOWLEDGE BASE</div>
+        <h2 data-i18n="diseaseLibrary">Disease Library</h2>
+        <p class="muted" data-i18n="libraryDesc">Explore educational guides.</p>
+        <div class="search"><input id="diseaseSearchInput" data-i18n-placeholder="searchDiseases" placeholder="Search diseases..." oninput="filterDiseases()"></div>
+        <div class="grid-3" id="diseaseGrid" style="margin-top:16px"></div>
+        <div id="diseaseEmpty" style="display:none;text-align:center;padding:24px;color:var(--muted);font-size:14px" data-i18n="noDiseaseFound">No matching diseases found.</div>
+        <div id="diseaseDetailCard" class="card" style="margin-top:18px;display:none;border-color:var(--green)" role="dialog" aria-modal="true" tabindex="-1">
+          <div style="display:flex;justify-content:space-between;align-items:center">
             <h3 id="detailTitle" style="color:var(--green-dark)"></h3>
             <button class="btn btn-secondary" onclick="closeDiseaseDetail()" style="padding:4px 10px">✕</button>
           </div>
@@ -1101,7 +1184,14 @@ h1, h2, h3, h4, .title, .page-title, .section-title {
         <h2 data-i18n="nearbyHealthcare">Nearby Healthcare</h2>
         <div class="card" style="margin-top:16px;padding:30px;text-align:center">
           <button class="btn btn-primary" onclick="requestLocation()"><svg class="inline-icon"><use href="#i-pin"></use></svg><span data-i18n="allowLocation">Allow Location</span></button>
-          <div id="locationStatus" class="muted" style="margin-top:10px;font-size:13px" data-i18n="locationNotRequested">Location status: Not requi18n="historySub">Previous assessments.</p>
+          <div id="locationStatus" class="muted" style="margin-top:10px;font-size:13px" data-i18n="locationNotRequested">Location status: Not requested</div>
+        </div>
+      </section>
+
+      <section class="screen" id="page-history">
+        <div class="eyebrow" data-i18n="historyEyebrow">LOGS</div>
+        <h2 data-i18n="history">Health Check History</h2>
+        <p class="muted" data-i18n="historySub">Previous assessments.</p>
         <div class="card" style="margin-top:16px" id="historyList"></div>
       </section>
 
@@ -1116,11 +1206,53 @@ h1, h2, h3, h4, .title, .page-title, .section-title {
               <div class="avatar-upload" id="avatarPreview"><span><svg class="ui-icon" style="width:28px;height:28px"><use href="#i-user"></use></svg></span><input type="file" accept="image/*" onchange="handleAvatarUpload(event)"></div>
               <small class="muted" data-i18n="clickUpload">Click to upload avatar</small>
             </div>
-            <div class="form-group"><label data-i18n="name">Name *</label><input i     <div class="form-group"><label data-i18n="weight">Weight (kg)</label><input id="profileWeight" type="number" oninput="validateProfile()"><div class="error-text" id="weightError" data-i18n="errorWeight"></div></div>
+            <div class="form-group"><label data-i18n="name">Name *</label><input id="profileName" oninput="validateProfile()"><div class="error-text" id="nameError" data-i18n="errorName"></div></div>
+            <div class="form-group"><label data-i18n="age">Age *</label><input id="profileAge" type="number" min="1" max="120" oninput="validateProfile()"><div class="error-text" id="ageError" data-i18n="errorAge"></div></div>
+            <div class="form-group"><label data-i18n="sex">Sex</label>
+              <select id="profileSex">
+                <option value="" data-i18n="select">Select</option>
+                <option value="Male" data-i18n="male">Male</option>
+                <option value="Female" data-i18n="female">Female</option>
+                <option value="Other" data-i18n="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group"><label data-i18n="height">Height (cm)</label><input id="profileHeight" type="number" oninput="validateProfile()"><div class="error-text" id="heightError" data-i18n="errorHeight"></div></div>
+            <div class="form-group"><label data-i18n="weight">Weight (kg)</label><input id="profileWeight" type="number" oninput="validateProfile()"><div class="error-text" id="weightError" data-i18n="errorWeight"></div></div>
           </div>
-          <div cl>
+          <div class="card">
+            <h3 data-i18n="healthInfo">Health Information</h3>
+            <div class="form-group" style="margin-top:12px"><label data-i18n="existingConditions">Existing Conditions</label><input id="profileConditions" data-i18n-placeholder="phConditions"></div>
+            <div class="form-group"><label data-i18n="allergies">Allergies</label><input id="profileAllergies" data-i18n-placeholder="phAllergies"></div>
+            <div class="form-group"><label data-i18n="currentMedications">Current Medications</label><input id="profileMeds"></div>
+            <div class="form-group"><label data-i18n="familyHistory">Family History</label><input id="profileFamily"></div>
+          </div>
+        </div>
+        <div style="margin-top:16px"><button class="btn btn-primary" id="btnSaveProfile" onclick="saveProfile()" disabled data-i18n="saveProfile">Save Profile</button></div>
+      </section>
+
+      <section class="screen" id="page-emergency">
+        <div class="eyebrow" style="color:var(--danger)" data-i18n="emergencyEyebrow">URGENT SUPPORT</div>
+        <h2 data-i18n="emergency">Emergency Help</h2>
+        <p class="muted" data-i18n="emergencySub">Select the situation. Call 115 first, then follow the steps.</p>
+        <div id="emSelectView">
           <div class="em-situation-grid">
-            <button class="em-card" onclick="openEmGuide('stroke')"><div class="em-icon"><svg class="ui-icon" style="width:28px;height:28px"><use href="#i-alert"></use></svg></div><h3 data-i18n="emStroke">Suspe   <div class="action-row" style="margin-top:20px">
+            <button class="em-card" onclick="openEmGuide('stroke')"><div class="em-icon"><svg class="ui-icon" style="width:28px;height:28px"><use href="#i-alert"></use></svg></div><h3 data-i18n="emStroke">Suspected Stroke</h3><p class="muted" data-i18n="emStrokeDesc">Face droop, arm weakness, speech difficulty.</p></button>
+            <button class="em-card" onclick="openEmGuide('cpr')"><div class="em-icon"><svg class="ui-icon" style="width:28px;height:28px"><use href="#i-check"></use></svg></div><h3 data-i18n="emCPR">Unresponsive / Not breathing</h3><p class="muted" data-i18n="emCPRDesc">Not responding, not breathing normally.</p></button>
+            <button class="em-card" onclick="openEmGuide('choking')"><div class="em-icon"><svg class="ui-icon" style="width:28px;height:28px"><use href="#i-alert"></use></svg></div><h3 data-i18n="emChoking">Choking</h3><p class="muted" data-i18n="emChokingDesc">Cannot speak, cough or breathe.</p></button>
+          </div>
+          <div class="card" style="margin-top:18px;border-color:var(--danger);background:#fff8f8">
+            <p style="font-size:14px" data-i18n="emGeneralNote">If life-threatening, call <strong>115</strong> immediately.</p>
+            <button class="btn btn-danger" style="margin-top:12px" onclick="showModal('callModal')"><svg class="inline-icon"><use href="#i-alert"></use></svg><span data-i18n="callEmergency">Call 115</span></button>
+          </div>
+        </div>
+        <div class="em-detail" id="emDetailView">
+          <div class="call-banner">
+            <h3 data-i18n="callFirst">1. Call 115 first</h3>
+            <p data-i18n="callFirstText">While waiting, follow the steps below.</p>
+            <button class="btn" style="background:white;color:var(--danger);font-weight:700" onclick="showModal('callModal')"><svg class="inline-icon"><use href="#i-alert"></use></svg><span data-i18n="callEmergency">Call 115</span></button>
+          </div>
+          <div id="emGuideContent"></div>
+          <div class="action-row" style="margin-top:20px">
             <button class="btn btn-secondary" onclick="backToEmSelect()" data-i18n="backToSituations">← Back</button>
             <button class="btn btn-primary" onclick="tryNavigate('mini-lesson')" data-i18n="relatedLesson">Related Mini Lesson</button>
           </div>
@@ -1136,16 +1268,68 @@ h1, h2, h3, h4, .title, .page-title, .section-title {
     <p data-i18n="exitText">Leaving will clear selected area, answers and progress.</p>
     <div class="modal-actions">
       <button class="btn btn-secondary" onclick="closeModal('exitCheckModal')" data-i18n="stay">Stay</button>
-      <button clv class="toast-card status" id="toastStatus">
+      <button class="btn btn-danger" onclick="confirmExitCheck()" data-i18n="leaveAnyway">Leave anyway</button>
+    </div>
+  </div>
+</div>
+<div class="modal-overlay" id="resumeCheckModal" role="dialog" aria-modal="true">
+  <div class="modal">
+    <h3 data-i18n="resumeCheckTitle">Bạn có bài kiểm tra chưa hoàn tất</h3>
+    <p data-i18n="resumeCheckText">Bạn muốn tiếp tục từ chỗ đang làm hay bắt đầu lại?</p>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="restartCheckDraft()" data-i18n="restartCheck">Bắt đầu lại</button>
+      <button class="btn btn-primary" onclick="resumeCheckDraft()" data-i18n="continueCheck">Tiếp tục</button>
+    </div>
+  </div>
+</div>
+<div class="modal-overlay" id="profileChoiceModal">
+  <div class="modal">
+    <h3 data-i18n="profileChoiceTitle">Before starting</h3>
+    <p data-i18n="profileChoiceText">Profile helps better results. You can skip, but results may be less accurate.</p>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="skipProfileAndStart()" data-i18n="skipProfile">Skip Profile</button>
+      <button class="btn btn-primary" onclick="goToFillProfile()" data-i18n="fillProfile">Fill Profile</button>
+    </div>
+  </div>
+</div>
+<div class="toast-stack" id="toastStack">
+  <div class="toast-card status" id="toastStatus">
     <div class="toast-icon" id="toastStatusIcon"><svg class="ui-icon"><use href="#i-book"></use></svg></div>
     <div class="toast-body">
-      <strong id="toastStatusTitle" data-i18n="resultStatusRef">Đánh ceText"></span>
+      <strong id="toastStatusTitle" data-i18n="resultStatusRef">Đánh giá tham khảo</strong>
+      <span id="toastStatusSub" data-i18n="resultsSub">Tóm tắt dựa trên câu trả lời của bạn.</span>
+    </div>
+    <button type="button" class="toast-close" onclick="dismissToast('toastStatus')" aria-label="Close">×</button>
+  </div>
+  <div class="toast-card warn" id="toastNotice">
+    <div class="toast-icon"><svg class="ui-icon"><use href="#i-alert"></use></svg></div>
+    <div class="toast-body">
+      <strong data-i18n="noticeTitle">Lưu ý:</strong>
+      <span id="toastNoticeText"></span>
     </div>
     <button type="button" class="toast-close" onclick="dismissToast('toastNotice')" aria-label="Close">×</button>
   </div>
 </div>
 <div class="modal-overlay" id="messageModal">
-  <div class="modal"><h3 id="messageModalTitle"'right';
+  <div class="modal"><h3 id="messageModalTitle"></h3><p id="messageModalText"></p>
+    <div class="modal-actions"><button class="btn btn-primary" onclick="closeModal('messageModal')" data-i18n="ok">OK</button></div>
+  </div>
+</div>
+<div class="modal-overlay" id="callModal">
+  <div class="modal">
+    <h3 data-i18n="callTitle">Call 115</h3>
+    <p data-i18n="callText">Prototype only. In a real emergency, dial 115 on your phone.</p>
+    <div class="modal-actions"><button class="btn btn-danger" onclick="closeModal('callModal')" data-i18n="ok">OK</button></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.159.0/build/three.min.js"></script>
+<script>
+let currentLang = 'vi';
+let selectedBodyArea = '';
+let selectedBodySide='';
+let selectedBodySubArea='';
+let activeArmSide='right';
 let activeLimbType='arm';
 let activeBodyView='front';
 let activeBodyFocus='chest';
@@ -1171,19 +1355,50 @@ const HEALTH_CHECK_DRAFT_KEY = 'healthguide-health-check-draft-v1';
 
 const AREA_LABELS = {
   en: { Head:'Head', Neck:'Neck', Chest:'Chest', Abdomen:'Abdomen', Back:'Back', Arm:'Arm', Elbow:'Elbow', Hand:'Hand', Leg:'Leg', Skin:'Skin' },
-  vi: { Head:'Đầu', Neck:'Cổ', Chest:'Ngực', Abdomen:'Bụng', Back:','Scalp','Da đầu'],['front-forehead','Forehead','Trán'],['front-eye','Eye','Mắt'],['front-ear','Ear','Tai'],['front-nose','Nose','Mũi'],['front-cheek','Cheek','Má'],['front-mouth','Mouth','Miệng'],['front-chin','Chin','Cằm'],['front-jaw','Jaw','Hàm'],['front-neck','Neck','Cổ'],['front-throat','Throat','Họng']]},{area:'Chest',en:'Middle torso',vi:'Phần giữa thân',regions:[['front-chest','Chest','Ngực'],['front-left-breast','Left breast','Ngực trái'],['front-right-breast','Right breast','Ngực phải'],['front-abdomen','Abdomen','Bụng'],['front-waist','Waist','Eo']]},{area:'Arm',en:'Shoulder to hand',vi:'Vai đến bàn tay',regions:[['front-shoulder','Shoulder','Vai'],['front-upper-arm','Upper arm','Cánh tay trên'],['front-elbow','Elbow','Khuỷu tay'],['front-foreargions:[['front-knee','Knee','Đầu gối'],['front-ankle','Ankle','Cổ chân'],['front-foot','Foot','Bàn chân'],['front-dorsum-foot','Dorsum of foot','Mu bàn chân'],['front-toes','Toes','Ngón chân'],['front-big-toe','Big toe','Ngón chân cái'],['front-little-toe'terior neck','Mặt sau cổ']]},{area:'Back',en:'Middle torso',vi:'Phần giữa thân',regions:[['back-upper-back','Upper back','Lưng trên'],['back-mid-back','Mid back','Lưng giữa'],['back-lower-back','Lower back','Lưng dưới'],['back-waist','Waist','Eo'],['back-lumbar-region','Lumbar region','Vùng thắt lưng'],['back-sacral-region','Sacral region','Vùng xương cùng'],['back-back','Back','Lưng']]},{area:'Arm',en:'Shoulder to hand',vi:'Vai đến bàn tay',regions:[['back-shoulder','Shoulder','Vai'],['back-scapular-region','Scapular region','Vùng bả vai'],['back-posterior-upper-arm','Posterior upper arm','Mặt sau cánh tay trên'],['back-elbow','Elbow','Khuỷu tay'],['back-forearm','Forearm','Cẳng tay'],['back-wrist','Wrist','Cổ tay'],['back-dorsum-hand','Dorsum of hand','Mu bàn tay'],['back-thumb','Thumb','Ngón cái'],['back-index-finger','Index finger','Ngón trỏ'],['back-middle-finger','Middle finger','Ngón giữa'],['back-ring-finger','Ring finger','Ngón áp út'],['back-little-finger','Little finger','Ngón út']]},{area:'Pelvis'gh','Mặt sau đùi']]},{area:'Leg',en:'Knee to foot',vi:'Đầu gối đến bàn chân',regions:[['back-popliteal-region','Popliteal region','Vùng khoeo'],['back-knee','Knee','Đầu gối'],['back-calf','Calf','Bắp chân'],['back-ankle','Ankle','Cổ chân'],['back-heel','Henose, sore throat, cough.'}, vi:{name:'Cảm lạnh', desc:'Nhiễm trùng hô hấp nhẹ.', detail:'Sổ mũi, đau họng, ho.'} },
-  { id:'Flu', tag:'Viral', en:{name:'Influenza', desc:'Contagious illness.', detail:'Sudden fever, body aches, fatigue.'}, vi:{name:'Cúm', detail:'Khó thở, khò khè.'} },
-  { id:'Diabetes', tag:'Metabolic', en:{name:'Diabetes', desc:'Blood sugar disorder.', detail:'Thirst, frequent urination, fatigue.'}, vi:{name:'Tiểu đường', desc:'Rối loạn đường huyết.', detail:'Khát nhiều, tiểu nhiều, mệtname:'Gastritis', desc:'Stomach lining inflammation.', detail:'Upper abdominal pain, nausea.'}, vi:{name:'Viêm dạ dày', desc:'Viêm niêm mạc dạ dày.', detail:'Đau thượng vị, buồn nôn.'} },
+  vi: { Head:'Đầu', Neck:'Cổ', Chest:'Ngực', Abdomen:'Bụng', Back:'Lưng', Arm:'Cánh tay', Elbow:'Khuỷu tay', Hand:'Bàn tay', Leg:'Chân', Skin:'Da' }
+};
+const ARM_DETAIL_LABELS={en:{upper:'Upper arm',elbow:'Elbow',forearm:'Forearm',wrist:'Wrist',hand:'Hand'},vi:{upper:'Bắp tay',elbow:'Khuỷu tay',forearm:'Cẳng tay',wrist:'Cổ tay',hand:'Bàn tay'}};
+const LEG_DETAIL_LABELS={en:{thigh:'Thigh',knee:'Knee',lowerLeg:'Lower leg',foot:'Foot'},vi:{thigh:'Đùi',knee:'Đầu gối',lowerLeg:'Cẳng chân',foot:'Bàn chân'}};
+const BODY_DETAIL_LABELS={en:{head:'Head',neck:'Neck',chest:'Chest',abdomen:'Abdomen',back:'Back'},vi:{head:'Đầu',neck:'Cổ',chest:'Ngực',abdomen:'Bụng',back:'Lưng'}};
+const BODY_FOCUS_KEYS={front:{head:['front-head','front-scalp','front-forehead','front-eye','front-ear','front-nose','front-cheek','front-mouth','front-chin','front-jaw'],neck:['front-neck','front-throat'],chest:['front-chest','front-left-breast','front-right-breast'],abdomen:['front-abdomen','front-waist']},back:{head:['back-head','back-scalp','back-ear'],neck:['back-nape','back-neck','back-posterior-neck'],back:['back-upper-back','back-mid-back','back-lower-back','back-waist','back-lumbar-region','back-sacral-region','back-back']}};
+const BODY_REGION_GROUPS={front:[{area:'Head',en:'Head & neck',vi:'Đầu & cổ',regions:[['front-head','Head','Đầu'],['front-scalp','Scalp','Da đầu'],['front-forehead','Forehead','Trán'],['front-eye','Eye','Mắt'],['front-ear','Ear','Tai'],['front-nose','Nose','Mũi'],['front-cheek','Cheek','Má'],['front-mouth','Mouth','Miệng'],['front-chin','Chin','Cằm'],['front-jaw','Jaw','Hàm'],['front-neck','Neck','Cổ'],['front-throat','Throat','Họng']]},{area:'Chest',en:'Middle torso',vi:'Phần giữa thân',regions:[['front-chest','Chest','Ngực'],['front-left-breast','Left breast','Ngực trái'],['front-right-breast','Right breast','Ngực phải'],['front-abdomen','Abdomen','Bụng'],['front-waist','Waist','Eo']]},{area:'Arm',en:'Shoulder to hand',vi:'Vai đến bàn tay',regions:[['front-shoulder','Shoulder','Vai'],['front-upper-arm','Upper arm','Cánh tay trên'],['front-elbow','Elbow','Khuỷu tay'],['front-forearm','Forearm','Cẳng tay'],['front-wrist','Wrist','Cổ tay'],['front-hand','Hand','Bàn tay'],['front-palm','Palm','Lòng bàn tay'],['front-thumb','Thumb','Ngón cái'],['front-index-finger','Index finger','Ngón trỏ'],['front-middle-finger','Middle finger','Ngón giữa'],['front-ring-finger','Ring finger','Ngón áp út'],['front-little-finger','Little finger','Ngón út']]},{area:'Pelvis',en:'Pelvis to thigh',vi:'Vùng chậu đến đùi',regions:[['front-pelvis','Pelvis','Vùng chậu'],['front-hip','Hip','Hông'],['front-pubic-region','Pubic region','Vùng mu'],['front-external-genitalia','External genitalia','Cơ quan sinh dục ngoài'],['front-thigh','Thigh','Đùi'],['front-anterior-thigh','Anterior thigh','Mặt trước đùi']]},{area:'Leg',en:'Knee to foot',vi:'Đầu gối đến bàn chân',regions:[['front-knee','Knee','Đầu gối'],['front-ankle','Ankle','Cổ chân'],['front-foot','Foot','Bàn chân'],['front-dorsum-foot','Dorsum of foot','Mu bàn chân'],['front-toes','Toes','Ngón chân'],['front-big-toe','Big toe','Ngón chân cái'],['front-little-toe','Little toe','Ngón chân út']]}],back:[{area:'Head',en:'Head & neck',vi:'Đầu & cổ',regions:[['back-head','Head','Đầu'],['back-scalp','Scalp','Da đầu'],['back-ear','Ear','Tai'],['back-nape','Nape','Gáy'],['back-neck','Neck','Cổ'],['back-posterior-neck','Posterior neck','Mặt sau cổ']]},{area:'Back',en:'Middle torso',vi:'Phần giữa thân',regions:[['back-upper-back','Upper back','Lưng trên'],['back-mid-back','Mid back','Lưng giữa'],['back-lower-back','Lower back','Lưng dưới'],['back-waist','Waist','Eo'],['back-lumbar-region','Lumbar region','Vùng thắt lưng'],['back-sacral-region','Sacral region','Vùng xương cùng'],['back-back','Back','Lưng']]},{area:'Arm',en:'Shoulder to hand',vi:'Vai đến bàn tay',regions:[['back-shoulder','Shoulder','Vai'],['back-scapular-region','Scapular region','Vùng bả vai'],['back-posterior-upper-arm','Posterior upper arm','Mặt sau cánh tay trên'],['back-elbow','Elbow','Khuỷu tay'],['back-forearm','Forearm','Cẳng tay'],['back-wrist','Wrist','Cổ tay'],['back-dorsum-hand','Dorsum of hand','Mu bàn tay'],['back-thumb','Thumb','Ngón cái'],['back-index-finger','Index finger','Ngón trỏ'],['back-middle-finger','Middle finger','Ngón giữa'],['back-ring-finger','Ring finger','Ngón áp út'],['back-little-finger','Little finger','Ngón út']]},{area:'Pelvis',en:'Pelvis to thigh',vi:'Vùng chậu đến đùi',regions:[['back-hip','Hip','Hông'],['back-pelvic-region','Pelvic region','Vùng chậu'],['back-buttock','Buttock','Mông'],['back-gluteal-region','Gluteal region','Vùng mông'],['back-posterior-thigh','Posterior thigh','Mặt sau đùi']]},{area:'Leg',en:'Knee to foot',vi:'Đầu gối đến bàn chân',regions:[['back-popliteal-region','Popliteal region','Vùng khoeo'],['back-knee','Knee','Đầu gối'],['back-calf','Calf','Bắp chân'],['back-ankle','Ankle','Cổ chân'],['back-heel','Heel','Gót chân'],['back-foot','Foot','Bàn chân'],['back-sole','Sole','Lòng bàn chân'],['back-toes','Toes','Ngón chân']]}]};
+const AI_QUESTIONS = {
+  en: ["You selected <strong>{area}</strong>. How long have symptoms lasted?","How severe? (Mild / Moderate / Severe)","Getting worse, same, or improving?","Any fever, fatigue, or nausea?","Thank you. Enough for a reference summary."],
+  vi: ["Bạn chọn vùng <strong>{area}</strong>. Triệu chứng khoảng bao lâu?","Mức độ? (Nhẹ / Trung bình / Nặng)","Nặng hơn, giữ nguyên hay đỡ hơn?","Có sốt, mệt, buồn nôn không?","Cảm ơn. Đã đủ thông tin tham khảo."]
+};
+const QUICK_OPTIONS = {
+  en: [["Today","1–3 days","More than a week"],["Mild","Moderate","Severe"],["Getting worse","Same","Improving"],["Yes","No","Not sure"]],
+  vi: [["Hôm nay","1–3 ngày","Hơn 1 tuần"],["Nhẹ","Trung bình","Nặng"],["Nặng hơn","Giữ nguyên","Đang đỡ"],["Có","Không","Không chắc"]]
+};
+const DISEASES = [
+  { id:'Dengue', tag:'Viral', en:{name:'Dengue Fever', desc:'Mosquito-borne infection.', detail:'High fever, headache, muscle pain, rash.'}, vi:{name:'Sốt xuất huyết', desc:'Bệnh do muỗi.', detail:'Sốt cao, đau đầu, đau cơ, phát ban.'} },
+  { id:'Cold', tag:'Respiratory', en:{name:'Common Cold', desc:'Mild respiratory infection.', detail:'Runny nose, sore throat, cough.'}, vi:{name:'Cảm lạnh', desc:'Nhiễm trùng hô hấp nhẹ.', detail:'Sổ mũi, đau họng, ho.'} },
+  { id:'Flu', tag:'Viral', en:{name:'Influenza', desc:'Contagious illness.', detail:'Sudden fever, body aches, fatigue.'}, vi:{name:'Cúm', desc:'Bệnh truyền nhiễm.', detail:'Sốt cao đột ngột, đau nhức, mệt.'} },
+  { id:'Asthma', tag:'Chronic', en:{name:'Asthma', desc:'Chronic airway condition.', detail:'Shortness of breath, wheezing.'}, vi:{name:'Hen suyễn', desc:'Bệnh đường thở mạn tính.', detail:'Khó thở, khò khè.'} },
+  { id:'Diabetes', tag:'Metabolic', en:{name:'Diabetes', desc:'Blood sugar disorder.', detail:'Thirst, frequent urination, fatigue.'}, vi:{name:'Tiểu đường', desc:'Rối loạn đường huyết.', detail:'Khát nhiều, tiểu nhiều, mệt.'} },
+  { id:'Migraine', tag:'Neurological', en:{name:'Migraine', desc:'Severe headaches.', detail:'Headache with nausea, light sensitivity.'}, vi:{name:'Đau nửa đầu', desc:'Đau đầu dữ dội.', detail:'Đau đầu, buồn nôn, sợ ánh sáng.'} },
+  { id:'HTN', tag:'Chronic', en:{name:'Hypertension', desc:'High blood pressure.', detail:'Often silent; heart and stroke risk.'}, vi:{name:'Tăng huyết áp', desc:'Huyết áp cao.', detail:'Thường im lặng; nguy cơ tim, đột quỵ.'} },
+  { id:'Gastritis', tag:'Digestive', en:{name:'Gastritis', desc:'Stomach lining inflammation.', detail:'Upper abdominal pain, nausea.'}, vi:{name:'Viêm dạ dày', desc:'Viêm niêm mạc dạ dày.', detail:'Đau thượng vị, buồn nôn.'} },
   { id:'Rhinitis', tag:'Allergy', en:{name:'Allergic Rhinitis', desc:'Nose allergy.', detail:'Sneezing, runny nose, itchy eyes.'}, vi:{name:'Viêm mũi dị ứng', desc:'Dị ứng mũi.', detail:'Hắt hơi, sổ mũi, ngứa mắt.'} }
 ];
 const TAG_I18N = { en:{Viral:'Viral',Respiratory:'Respiratory',Chronic:'Chronic',Metabolic:'Metabolic',Neurological:'Neurological',Digestive:'Digestive',Allergy:'Allergy'}, vi:{Viral:'Virus',Respiratory:'Hô hấp',Chronic:'Mạn tính',Metabolic:'Chuyển hóa',Neurological:'Thần kinh',Digestive:'Tiêu hóa',Allergy:'Dị ứng'} };
 const HISTORY_DATA = [
   { en:{date:'August 20, 2026', note:'Headache, Fatigue (Head)', badge:'Common Cold'}, vi:{date:'20 tháng 8, 2026', note:'Đau đầu, mệt (Đầu)', badge:'Cảm lạnh'} },
-  { en:{date:'August 12, 2026', note:'Chest discomfort (Chest)', badge:'Muscle strain'}, vi:{date:'12ul>`, vi:`<h3>Đột quỵ – FAST</h3><ul><li><strong>F</strong> Mặt xệ</li><li><strong>A</strong> Yếu tay</li><li><strong>S</strong> Nói khó</li><li><strong>T</strong> Gọi 115</li></ul>` },
-  choking:{ en:`<h3>Choking – Heimlich</h3><ol><li>Ask if choking.</lpain</li><li>Persistent vomiting</li><li>Bleeding</li><li>Extreme fatigue</li></ul>`, vi:`<h3>Cảnh báo sốt xuất huyết</h3><ul><li>Đau bụng dữ dội</li><li>Nôn nhiều</li><li>Chảy máu</li><li>Mệt lả</li></ul>` },
+  { en:{date:'August 12, 2026', note:'Chest discomfort (Chest)', badge:'Muscle strain'}, vi:{date:'12 tháng 8, 2026', note:'Khó chịu ngực (Ngực)', badge:'Căng cơ'} },
+  { en:{date:'July 28, 2026', note:'Skin rash (Skin)', badge:'Allergic reaction'}, vi:{date:'28 tháng 7, 2026', note:'Phát ban (Da)', badge:'Phản ứng dị ứng'} }
+];
+const LESSONS = {
+  cpr:{ en:`<h3>CPR – Hands-only</h3><ol><li>Call 115.</li><li>Hand on center of chest.</li><li>Push 100–120/min.</li><li>Continue until help arrives.</li></ol>`, vi:`<h3>CPR – Chỉ dùng tay</h3><ol><li>Gọi 115.</li><li>Tay giữa ngực.</li><li>Ấn 100–120 lần/phút.</li><li>Tiếp tục đến khi có hỗ trợ.</li></ol>` },
+  stroke:{ en:`<h3>Stroke – FAST</h3><ul><li><strong>F</strong> Face droop</li><li><strong>A</strong> Arm weakness</li><li><strong>S</strong> Speech difficulty</li><li><strong>T</strong> Call 115</li></ul>`, vi:`<h3>Đột quỵ – FAST</h3><ul><li><strong>F</strong> Mặt xệ</li><li><strong>A</strong> Yếu tay</li><li><strong>S</strong> Nói khó</li><li><strong>T</strong> Gọi 115</li></ul>` },
+  choking:{ en:`<h3>Choking – Heimlich</h3><ol><li>Ask if choking.</li><li>Fist above navel.</li><li>Thrust inward and up.</li></ol>`, vi:`<h3>Hóc – Heimlich</h3><ol><li>Hỏi có bị hóc không.</li><li>Nắm đấm trên rốn.</li><li>Đẩy vào trong và lên.</li></ol>` },
+  dengue:{ en:`<h3>Dengue warning</h3><ul><li>Severe abdominal pain</li><li>Persistent vomiting</li><li>Bleeding</li><li>Extreme fatigue</li></ul>`, vi:`<h3>Cảnh báo sốt xuất huyết</h3><ul><li>Đau bụng dữ dội</li><li>Nôn nhiều</li><li>Chảy máu</li><li>Mệt lả</li></ul>` },
   burn:{ en:`<h3>Minor burn</h3><ol><li>Cool water 10–20 min.</li><li>No ice/butter.</li><li>Cover loosely.</li></ol>`, vi:`<h3>Bỏng nhẹ</h3><ol><li>Nước mát 10–20 phút.</li><li>Không đá/bơ.</li><li>Che nhẹ.</li></ol>` },
-  fever:{ en:`<h3>Fever at home</h3><ul><li>Rest, fluids.</li><li>Light clothi3><div class="fast-box"><div class="fast-item"><strong>F</strong><span>Face</span></div><div class="fast-item"><strong>A</strong><span>Arms</span></div><div class="fast-item"><strong>S</strong><span>Speech</span></div><div class="fast-item"><strong>T</stro<span>115</span></div></div><ol class="step-list"><li>Gọi <strong>115</strong>.</li><li>Nằm yên. Không ăn uống.</li><li>Kiểm tra thở → CPR nếu cần.</li><li>Ở bên đến khi có người đến.</li></ol>` },
-  cpr:{ en:`<h3 style="color:var(--danger)">CPR</h3><ol class="step-list"><li>Call <strong>115</strong>.</li><li>Flat surface.</li><li>Hands on center of chest.</li><li>Push <strong>100–120/min</strong>.</li><li>Continue until help arrives.</li></ol>`, vi:`<h3 style="color:var(--danger)">CPR</h3><ol class="step->.</li><li>Thủ thuật Heimlich.</li><li>Bất tỉnh → CPR.</li></ol>` }
+  fever:{ en:`<h3>Fever at home</h3><ul><li>Rest, fluids.</li><li>Light clothing.</li><li>Watch warning signs.</li></ul>`, vi:`<h3>Sốt tại nhà</h3><ul><li>Nghỉ ngơi, uống nước.</li><li>Mặc mỏng.</li><li>Theo dõi dấu hiệu nguy hiểm.</li></ul>` }
+};
+const EM_GUIDES = {
+  stroke:{ en:`<h3 style="color:var(--danger)">Stroke – FAST</h3><div class="fast-box"><div class="fast-item"><strong>F</strong><span>Face</span></div><div class="fast-item"><strong>A</strong><span>Arms</span></div><div class="fast-item"><strong>S</strong><span>Speech</span></div><div class="fast-item"><strong>T</strong><span>115</span></div></div><ol class="step-list"><li>Call <strong>115</strong>.</li><li>Keep still. No food/drink.</li><li>Check breathing → CPR if needed.</li><li>Stay until help arrives.</li></ol>`, vi:`<h3 style="color:var(--danger)">Đột quỵ – FAST</h3><div class="fast-box"><div class="fast-item"><strong>F</strong><span>Mặt</span></div><div class="fast-item"><strong>A</strong><span>Tay</span></div><div class="fast-item"><strong>S</strong><span>Nói</span></div><div class="fast-item"><strong>T</strong><span>115</span></div></div><ol class="step-list"><li>Gọi <strong>115</strong>.</li><li>Nằm yên. Không ăn uống.</li><li>Kiểm tra thở → CPR nếu cần.</li><li>Ở bên đến khi có người đến.</li></ol>` },
+  cpr:{ en:`<h3 style="color:var(--danger)">CPR</h3><ol class="step-list"><li>Call <strong>115</strong>.</li><li>Flat surface.</li><li>Hands on center of chest.</li><li>Push <strong>100–120/min</strong>.</li><li>Continue until help arrives.</li></ol>`, vi:`<h3 style="color:var(--danger)">CPR</h3><ol class="step-list"><li>Gọi <strong>115</strong>.</li><li>Mặt phẳng cứng.</li><li>Tay giữa ngực.</li><li>Ấn <strong>100–120 lần/phút</strong>.</li><li>Tiếp tục đến khi có hỗ trợ.</li></ol>` },
+  choking:{ en:`<h3 style="color:var(--danger)">Choking</h3><ol class="step-list"><li>Confirm choking.</li><li>Call <strong>115</strong>.</li><li>Heimlich thrusts.</li><li>If unresponsive → CPR.</li></ol>`, vi:`<h3 style="color:var(--danger)">Hóc dị vật</h3><ol class="step-list"><li>Xác nhận bị hóc.</li><li>Gọi <strong>115</strong>.</li><li>Thủ thuật Heimlich.</li><li>Bất tỉnh → CPR.</li></ol>` }
 };
 
 const translations = {
