@@ -323,7 +323,7 @@ h3 { font-size: 17px; margin-bottom: 6px; }
 .body-map-wrapper { display:flex; justify-content:center; align-items:center; margin:6px auto 14px; }
 .body-svg-box { width:min(390px,76vw); aspect-ratio:2 / 3; flex-shrink:0; overflow:hidden; border:1px solid #e2edf3; border-radius:24px; background:linear-gradient(160deg,#fff 5%,#f4f9fc 100%); box-shadow:0 12px 36px rgba(36,70,94,.08), inset 0 1px 0 #fff; }
 .body-svg-box > svg { width: 100%; height: 100%; display: block; overflow: visible; }
-.body-map-hit-area { fill: transparent !important; stroke: rgba(255,255,255,.96) !important; stroke-width: 8 !important; stroke-linejoin:round; cursor: pointer; pointer-events: all; }
+.body-map-hit-area { fill: transparent !important; stroke: transparent !important; stroke-width: 10; cursor: pointer; pointer-events: all; }
 .body-map-hit-area:hover { fill: rgba(11,31,58,.34) !important; stroke: rgba(16,43,76,.9) !important; stroke-width: 3 !important; }
 .body-map-hit-area.body-part.selected { fill: rgba(11,31,58,.38) !important; stroke: #102B4C !important; stroke-width: 2 !important; filter: none; transform:none; }
 .body-only-mode { justify-content: center; margin: 8px 0 18px; }
@@ -937,7 +937,7 @@ h1, h2, h3, h4, .title, .page-title, .section-title {
                   <linearGradient id="maleShade" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#91a8b8" stop-opacity=".66"/><stop offset=".5" stop-color="#f3f7f9" stop-opacity=".12"/><stop offset="1" stop-color="#91a8b8" stop-opacity=".66"/></linearGradient>
                 </defs>
                 <g id="maleBodyImage" clip-path="url(#bodyOnlyClip)" pointer-events="none" aria-hidden="true">
-                  <g fill="url(#maleSkin)" stroke="#f5f8fa" stroke-width="5" stroke-linejoin="round">
+                  <g fill="url(#maleSkin)" stroke="#f5f8fa" stroke-width="7" stroke-linejoin="round">
                     <ellipse cx="512" cy="174" rx="73" ry="96"/>
                     <path d="M465 238 Q512 270 559 238 L574 296 Q548 314 512 317 Q476 314 450 296Z"/>
                     <path d="M451 286 Q414 286 383 303 Q346 310 329 348 Q315 381 330 425 L352 500 Q364 543 382 578 Q398 608 401 642 L392 697 Q400 735 421 755 Q463 778 512 780 Q561 778 603 755 Q624 735 632 697 L623 642 Q626 608 642 578 Q660 543 672 500 L694 425 Q709 381 695 348 Q678 310 641 303 Q610 286 573 286 Q548 311 512 317 Q476 311 451 286Z"/>
@@ -954,7 +954,7 @@ h1, h2, h3, h4, .title, .page-title, .section-title {
                 </defs>
                 <g id="femaleBodyFigure" clip-path="url(#bodyOnlyClip)" pointer-events="none" style="display:none" aria-hidden="true">
                   <!-- A separate, fully clothed neutral female silhouette; the overlays remain the selectable zones. -->
-                  <g fill="url(#femaleSkin)" stroke="#f5f8fa" stroke-width="5" stroke-linejoin="round">
+                  <g fill="url(#femaleSkin)" stroke="#f5f8fa" stroke-width="7" stroke-linejoin="round">
                     <ellipse cx="512" cy="174" rx="73" ry="96"/>
                     <path d="M465 238 Q512 270 559 238 L574 296 Q548 314 512 317 Q476 314 450 296Z"/>
                     <path d="M450 286 Q420 286 390 304 Q350 312 333 351 Q318 383 333 425 L350 488 Q362 529 379 558 Q394 584 398 620 L392 688 Q385 721 397 751 Q419 783 512 786 Q605 783 627 751 Q639 721 632 688 L626 620 Q630 584 645 558 Q662 529 674 488 L691 425 Q706 383 691 351 Q674 312 634 304 Q604 286 574 286 Q550 314 512 321 Q474 314 450 286Z"/>
