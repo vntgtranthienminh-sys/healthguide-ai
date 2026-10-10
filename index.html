@@ -323,7 +323,7 @@ h3 { font-size: 17px; margin-bottom: 6px; }
 .body-map-wrapper { display:flex; justify-content:center; align-items:center; margin:6px auto 14px; }
 .body-svg-box { width:min(390px,76vw); aspect-ratio:2 / 3; flex-shrink:0; overflow:hidden; border:1px solid #e2edf3; border-radius:24px; background:linear-gradient(160deg,#fff 5%,#f4f9fc 100%); box-shadow:0 12px 36px rgba(36,70,94,.08), inset 0 1px 0 #fff; }
 .body-svg-box > svg { width: 100%; height: 100%; display: block; overflow: visible; }
-.body-map-hit-area { fill: transparent !important; stroke: transparent !important; stroke-width: 10; cursor: pointer; pointer-events: all; }
+.body-map-hit-area { fill: transparent !important; stroke: rgba(255,255,255,.96) !important; stroke-width: 8 !important; stroke-linejoin:round; cursor: pointer; pointer-events: all; }
 .body-map-hit-area:hover { fill: rgba(11,31,58,.34) !important; stroke: rgba(16,43,76,.9) !important; stroke-width: 3 !important; }
 .body-map-hit-area.body-part.selected { fill: rgba(11,31,58,.38) !important; stroke: #102B4C !important; stroke-width: 2 !important; filter: none; transform:none; }
 .body-only-mode { justify-content: center; margin: 8px 0 18px; }
@@ -968,8 +968,8 @@ h1, h2, h3, h4, .title, .page-title, .section-title {
                     <path d="M398 730 Q512 768 626 730"/>
                   </g>
                   <g id="femaleFrontContours" fill="none" stroke="#f6fafc" stroke-width="7" opacity=".9">
-                    <path d="M425 380 Q463 345 496 383 Q510 405 501 435 Q475 461 442 445 Q417 425 425 380Z"/>
-                    <path d="M599 380 Q561 345 528 383 Q514 405 523 435 Q549 461 582 445 Q607 425 599 380Z"/>
+                    <path d="M430 385 Q463 358 494 386 Q506 399 504 422 Q500 441 480 452 Q454 459 438 442 Q425 425 430 385Z"/>
+                    <path d="M594 385 Q561 358 530 386 Q518 399 520 422 Q524 441 544 452 Q570 459 586 442 Q599 425 594 385Z"/>
                   </g>
                 </g>
                 <path class="body-part body-map-hit-area" data-area="Head" d="M512 60 C454 60 406 105 406 162 C406 198 425 222 454 236 Q512 256 570 236 C599 222 618 198 618 162 C618 105 570 60 512 60 Z" onclick="selectBodyPart(this)"/>
@@ -1292,6 +1292,19 @@ h1, h2, h3, h4, .title, .page-title, .section-title {
     </div>
   </div>
 </div>
+<div class="modal-overlay" id="assessmentAgeModal" role="dialog" aria-modal="true" aria-labelledby="assessmentAgeTitle">
+  <div class="modal">
+    <h3 id="assessmentAgeTitle" data-i18n="assessmentAgeTitle">Cần tuổi để gửi bài kiểm tra</h3>
+    <p id="assessmentAgeHelp" data-i18n="assessmentAgeHelp">Backend hiện yêu cầu tuổi. Nhập tuổi để tiếp tục; câu trả lời của bạn vẫn được giữ lại.</p>
+    <label for="assessmentAgeInput" data-i18n="assessmentAgeLabel">Tuổi</label>
+    <input id="assessmentAgeInput" type="number" min="1" max="120" inputmode="numeric" data-i18n-placeholder="exampleAge" placeholder="Ví dụ: 25" style="width:100%;margin:8px 0 14px">
+    <p id="assessmentAgeError" class="error-text" role="alert"></p>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal('assessmentAgeModal')">Để sau</button>
+      <button class="btn btn-primary" onclick="submitAssessmentAge()">Tiếp tục</button>
+    </div>
+  </div>
+</div>
 <div class="toast-stack" id="toastStack">
   <div class="toast-card status" id="toastStatus">
     <div class="toast-icon" id="toastStatusIcon"><svg class="ui-icon"><use href="#i-book"></use></svg></div>
@@ -1462,7 +1475,8 @@ const translations = {
     stay:"Stay", leaveAnyway:"Save and leave",
     resumeCheckTitle:"You have an unfinished health check",
     resumeCheckText:"Would you like to continue where you left off or start over?",
-    continueCheck:"Continue", restartCheck:"Start over"
+    continueCheck:"Continue", restartCheck:"Start over",
+    assessmentAgeTitle:"Age needed to send this check", assessmentAgeHelp:"The mock API requires an age. Enter it to continue; your answers will stay saved.", assessmentAgeLabel:"Age", assessmentAgeError:"Enter an age from 1 to 120.", exampleAge:"For example: 25"
   },
   vi: {
     navMain:"CHÍNH", navAccount:"TÀI KHOẢN", home:"Trang chủ", healthCheck:"Kiểm tra sức khỏe", miniLesson:"Bài học ngắn", diseaseLibrary:"Thư viện bệnh học",
@@ -1524,7 +1538,8 @@ const translations = {
     stay:"Ở lại", leaveAnyway:"Lưu và thoát",
     resumeCheckTitle:"Bạn có bài kiểm tra chưa hoàn tất",
     resumeCheckText:"Bạn muốn tiếp tục từ chỗ đang làm hay bắt đầu lại?",
-    continueCheck:"Tiếp tục", restartCheck:"Bắt đầu lại"
+    continueCheck:"Tiếp tục", restartCheck:"Bắt đầu lại",
+    assessmentAgeTitle:"Cần tuổi để gửi bài kiểm tra", assessmentAgeHelp:"Mock API hiện yêu cầu tuổi. Nhập tuổi để tiếp tục; câu trả lời của bạn vẫn được giữ lại.", assessmentAgeLabel:"Tuổi", assessmentAgeError:"Nhập tuổi từ 1 đến 120.", exampleAge:"Ví dụ: 25"
   }
 };
 
@@ -1996,27 +2011,36 @@ function addUserMessage(text) {
   document.getElementById('aiChatMessages').scrollTop = 9999;
 }
 
-async function goToResult(apiResponse) {
+async function goToResult(apiResponse, ageOverride = null) {
   const areaLabel = getSelectedAreaLabel();
   if (!apiResponse) {
     try {
       const supportedMockSession = ['TEST_AI_SERVICE_ERROR', 'TEST_INTERNAL_ERROR'].includes(MOCK_SESSION_ID);
       if (!assessmentSessionId) assessmentSessionId = supportedMockSession ? MOCK_SESSION_ID : `session-${Date.now()}`;
-      const ageValue = Number(document.getElementById('profileAge')?.value);
+      const profileAgeValue = Number(document.getElementById('profileAge')?.value);
+      const ageValue = Number.isInteger(ageOverride) && ageOverride > 0 ? ageOverride : profileAgeValue;
+      if (!Number.isInteger(ageValue) || ageValue < 1 || ageValue > 120) {
+        showModal('assessmentAgeModal');
+        document.getElementById('assessmentAgeInput').focus();
+        return;
+      }
+      // Send the exact prompts expected by main.py's mock assessment contract.
+      const backendQuestions = ['Bạn đã có các triệu chứng này bao lâu rồi?', 'Mức độ triệu chứng của bạn như thế nào?', 'Triệu chứng của bạn đang nặng hơn, giữ nguyên hay đỡ hơn?', 'Bạn có sốt, mệt, buồn nôn không?'];
       const history = [];
       aiAnswers.forEach((answer, index) => {
-        history.push({ role: 'assistant', content: AI_QUESTIONS[currentLang][index] || 'Health assessment question' });
-        history.push({ role: 'user', content: answer });
+        const timestamp = new Date().toISOString();
+        history.push({ role: 'assistant', content: backendQuestions[index] || 'Health assessment question', timestamp });
+        history.push({ role: 'user', content: answer, timestamp });
       });
       assessmentHistory = history;
       const payload = {
         sessionId: assessmentSessionId,
         userContext: {
           userId: 'guest-user',
-          age: Number.isInteger(ageValue) && ageValue > 0 ? ageValue : null,
+          age: ageValue,
           gender: selectedBodyGender,
           primarySymptoms: selectedBodyZones.length ? selectedBodyZones.map(zone => bodyZoneLabel(zone)) : [areaLabel],
-          patientLocation: { city: 'Hai Phong', country: 'Vietnam' }
+          patientLocation: null
         },
         conversationHistory: assessmentHistory
       };
@@ -2027,7 +2051,8 @@ async function goToResult(apiResponse) {
       try { backendResponse = await response.json(); } catch (_) { backendResponse = {}; }
       if (!response.ok) {
         const detail = backendResponse?.detail || backendResponse;
-        throw new Error(`Backend ${response.status}${detail?.code ? ` (${detail.code})` : ''}: ${detail?.message || detail?.error || 'Không nhận được phản hồi hợp lệ.'}`);
+        const detailMessage = Array.isArray(detail) ? detail.map(item => `${(item.loc || []).join('.')}: ${item.msg || 'invalid value'}`).join('; ') : (detail?.message || detail?.error || 'Không nhận được phản hồi hợp lệ.');
+        throw new Error(`Backend ${response.status}${detail?.code ? ` (${detail.code})` : ''}: ${detailMessage}`);
       }
       const backendStatus = String(backendResponse.status || '').toUpperCase();
       const rawResult = backendResponse.nextAction?.assessmentResult || backendResponse.assessmentResult || backendResponse.result || {};
@@ -2197,6 +2222,19 @@ async function goToResult(apiResponse) {
   setCheckActive(false);
   try { sessionStorage.removeItem(HEALTH_CHECK_DRAFT_KEY); } catch (e) {}
   openPage('results');
+}
+function submitAssessmentAge() {
+  const age = Number(document.getElementById('assessmentAgeInput').value);
+  const error = document.getElementById('assessmentAgeError');
+  if (!Number.isInteger(age) || age < 1 || age > 120) {
+    error.textContent = translations[currentLang].assessmentAgeError;
+    error.classList.add('show');
+    return;
+  }
+  error.textContent = '';
+  error.classList.remove('show');
+  closeModal('assessmentAgeModal');
+  goToResult(null, age);
 }
 
 function renderResultError(message) {
