@@ -968,8 +968,8 @@ h1, h2, h3, h4, .title, .page-title, .section-title {
                     <path d="M398 730 Q512 768 626 730"/>
                   </g>
                   <g id="femaleFrontContours" fill="none" stroke="#f6fafc" stroke-width="7" opacity=".9">
-                    <path d="M430 385 Q463 358 494 386 Q506 399 504 422 Q500 441 480 452 Q454 459 438 442 Q425 425 430 385Z"/>
-                    <path d="M594 385 Q561 358 530 386 Q518 399 520 422 Q524 441 544 452 Q570 459 586 442 Q599 425 594 385Z"/>
+                    <path d="M420 348 Q512 378 604 348"/>
+                    <path d="M438 432 Q512 451 586 432"/>
                   </g>
                 </g>
                 <path class="body-part body-map-hit-area" data-area="Head" d="M512 60 C454 60 406 105 406 162 C406 198 425 222 454 236 Q512 256 570 236 C599 222 618 198 618 162 C618 105 570 60 512 60 Z" onclick="selectBodyPart(this)"/>
@@ -2061,9 +2061,16 @@ async function goToResult(apiResponse, ageOverride = null) {
       const conditions = asArray(rawResult.possibleConditions || rawResult.possible_conditions);
       const recommendations = rawResult.recommendations;
       const confidence = Number(backendResponse.confidenceScore ?? rawResult.confidenceScore);
+      const statusTitle = {
+        COMPLETED: currentLang === 'vi' ? 'Đánh giá mô phỏng hoàn tất' : 'Mock assessment complete',
+        NEEDS_CLARIFICATION: currentLang === 'vi' ? 'Cần thêm thông tin' : 'More information needed',
+        INCOMPLETE: currentLang === 'vi' ? 'Phản hồi chưa đầy đủ' : 'Incomplete response',
+        UNCERTAIN: currentLang === 'vi' ? 'Kết quả chưa chắc chắn' : 'Uncertain result',
+        EMERGENCY_REDIRECTIONS: currentLang === 'vi' ? 'Cần hỗ trợ khẩn cấp' : 'Urgent support needed'
+      }[backendStatus] || '';
       apiResponse = {
         status: backendStatus === 'UNCERTAIN' ? 'uncertain' : ['INCOMPLETE', 'NEEDS_CLARIFICATION'].includes(backendStatus) ? 'incomplete' : backendStatus.toLowerCase(),
-        disease_name: rawResult.disease_name || rawResult.diseaseName || rawResult.condition || conditions.join(', ') || (backendStatus === 'INCOMPLETE' || backendStatus === 'NEEDS_CLARIFICATION' ? (currentLang === 'vi' ? 'Cần thêm thông tin' : 'More information needed') : triage || '—'),
+        disease_name: rawResult.disease_name || rawResult.diseaseName || rawResult.condition || conditions.join(', ') || statusTitle || triage || '—',
         explanation: rawResult.explanation || rawResult.summary || rawResult.description || backendResponse.nextAction?.question?.prompt || '',
         recommended_action: rawResult.recommended_action || rawResult.recommendedAction || rawResult.recommendation || (Array.isArray(recommendations) ? recommendations.join('\n') : recommendations) || '',
         warning_signs: rawResult.warning_signs || rawResult.warningSigns || rawResult.red_flags || [],
