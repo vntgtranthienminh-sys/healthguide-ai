@@ -854,12 +854,12 @@ h1, h2, h3, h4, .title, .page-title, .section-title {
   .anatomy-side-switch button.active { color:#ef873d; background:#fff; box-shadow:0 1px 5px #0b1f3a18; }
   .body-reference-scroll { display:flex; justify-content:center; width:100%; overflow:hidden; margin:18px auto; }
   .body-reference-stage { position:relative; width:min(100%,340px); min-width:0; margin:0 auto; aspect-ratio:19/50; background:#fff; border:1px solid #e1e7ee; border-radius:18px; overflow:hidden; flex:0 1 340px; }
-  .body-reference-stage > img { position:absolute; z-index:0; top:0; left:0; height:100%; width:auto; max-width:none; object-fit:fill; }
+  .body-reference-stage > img { position:absolute; z-index:0; top:0; left:50%; height:100%; width:auto; max-width:none; object-fit:fill; transform:translateX(-50%); }
   .body-reference-stage::after { content:""; display:block; position:absolute; z-index:1; top:0; left:0; right:0; height:10%; background:#fff; pointer-events:none; }
-  .body-reference-map[data-active-gender="male"][data-active-view="front"] { left:-17.5%; }
-  .body-reference-map[data-active-gender="male"][data-active-view="back"] { left:-101.6%; }
-  .body-reference-map[data-active-gender="female"][data-active-view="front"] { left:-211.2%; }
-  .body-reference-map[data-active-gender="female"][data-active-view="back"] { left:-293%; }
+  .body-reference-map[data-active-gender="male"][data-active-view="front"] { left:-9.2%; }
+  .body-reference-map[data-active-gender="male"][data-active-view="back"] { left:-93.9%; }
+  .body-reference-map[data-active-gender="female"][data-active-view="front"] { left:-200.5%; }
+  .body-reference-map[data-active-gender="female"][data-active-view="back"] { left:-283.8%; }
   .body-reference-map { position:absolute; z-index:2; top:0; left:0; right:auto; bottom:auto; width:395%; height:100%; max-width:none; }
   .body-reference-map[data-active-gender="male"] [data-gender="female"], .body-reference-map[data-active-gender="female"] [data-gender="male"], .body-reference-map[data-active-view="front"] [data-view="back"], .body-reference-map[data-active-view="back"] [data-view="front"] { display:none; }
   .body-reference-map .body-map-hit-area { fill:rgba(11,31,58,0) !important; stroke:rgba(82,98,112,.38); stroke-width:1.25; cursor:pointer; pointer-events:all; transition:fill .15s,stroke .15s; }
