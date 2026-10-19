@@ -865,6 +865,9 @@ h1, h2, h3, h4, .title, .page-title, .section-title {
   .body-reference-map .body-map-hit-area { fill:rgba(11,31,58,0) !important; stroke:rgba(82,98,112,.38); stroke-width:1.25; cursor:pointer; pointer-events:all; transition:fill .15s,stroke .15s; }
   .body-reference-map .body-map-hit-area:hover { fill:rgba(242,85,65,.3) !important; stroke:rgba(196,49,43,.65); }
   .body-reference-map .body-map-hit-area.selected { fill:rgba(255,72,64,.68) !important; stroke:#e72f2b; stroke-width:3; filter:drop-shadow(0 1px 4px rgba(210,35,30,.34)); }
+  .body-reference-map .body-map-hit-area[data-area="Leg"][data-subarea] { stroke:rgba(82,98,112,.7); stroke-width:2.2; }
+  .body-reference-map .body-map-hit-area[data-area="Leg"][data-subarea].selected { stroke:#e72f2b; stroke-width:3; }
+  .body-reference-map .body-map-hit-area[data-area="Leg"][data-subarea]:hover { stroke:rgba(196,49,43,.8); stroke-width:2.6; }
   .body-reference-caption { max-width:1050px; margin:-8px auto 8px; color:var(--muted); font-size:13px; text-align:center; }
   .assessment-journey, .assessment-progress { display:none; }
   .assessment-journey[hidden], .assessment-progress[hidden] { display:none !important; }
