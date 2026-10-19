@@ -1716,6 +1716,7 @@ function clearHealthCheckData() {
   const sel = document.getElementById('selectedDisplay');
   if (sel) sel.innerText = translations[currentLang].noAreaSelected;
   document.querySelectorAll('[data-body-gender]').forEach(button => { const active=button.dataset.bodyGender==='male'; button.classList.toggle('active',active); button.setAttribute('aria-pressed',String(active)); });
+  document.querySelectorAll('.body-reference-stage,.body-reference-map').forEach(node=>node.dataset.activeGender='male');
   const femaleFigure=document.getElementById('femaleBodyFigure'); if(femaleFigure)femaleFigure.style.display='none';
   const maleFigure=document.getElementById('maleBodyImage'); if(maleFigure)maleFigure.style.display='';
   const btnCam = document.getElementById('btnToCamera');
