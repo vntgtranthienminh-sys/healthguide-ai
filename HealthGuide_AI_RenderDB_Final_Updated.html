@@ -1010,6 +1010,11 @@ h1, h2, h3, h4, .title, .page-title, .section-title {
 
       <section class="screen" id="page-health-check">
         <div class="check-card">
+          <div class="emergency-result-banner" role="alert">
+            <strong data-i18n="emergencyImmediateTitle">Dấu hiệu nguy hiểm? Đừng chờ hoàn tất bài kiểm tra.</strong>
+            <p data-i18n="emergencyImmediateText">Khó thở cấp, đau ngực dữ dội, ngất, co giật hoặc dấu hiệu đột quỵ: gọi 115 ngay.</p>
+            <a class="btn btn-primary" href="tel:115" data-i18n="call115Now">Gọi 115</a>
+          </div>
           <div class="eyebrow" data-i18n="step1">HEALTH CHECK · STEP 1/4</div>
           <h2 data-i18n="whereProblem">Where is the problem?</h2>
           <p class="muted" data-i18n="selectBodyMap">Tap on the body area. The selected area will light up.</p>
@@ -1386,16 +1391,6 @@ h1, h2, h3, h4, .title, .page-title, .section-title {
     </div>
   </div>
 </div>
-<div class="modal-overlay" id="profileChoiceModal">
-  <div class="modal">
-    <h3 data-i18n="profileChoiceTitle">Before starting</h3>
-    <p data-i18n="profileChoiceText">Profile helps better results. You can skip, but results may be less accurate.</p>
-    <div class="modal-actions">
-      <button class="btn btn-secondary" onclick="skipProfileAndStart()" data-i18n="skipProfile">Skip Profile</button>
-      <button class="btn btn-primary" onclick="goToFillProfile()" data-i18n="fillProfile">Fill Profile</button>
-    </div>
-  </div>
-</div>
 <div class="modal-overlay" id="assessmentAgeModal" role="dialog" aria-modal="true" aria-labelledby="assessmentAgeTitle">
   <div class="modal">
     <h3 id="assessmentAgeTitle" data-i18n="assessmentAgeTitle">Cần tuổi để gửi bài kiểm tra</h3>
@@ -1569,6 +1564,7 @@ const translations = {
     emChoking:"Choking", emChokingDesc:"Cannot speak, cough or breathe.", emGeneralNote:"If life-threatening, call 115 immediately.",
     callEmergency:"Call 115", callFirst:"1. Call 115 first", callFirstText:"While waiting, follow the steps below.", backToSituations:"← Back", relatedLesson:"Related Mini Lesson",
     errorName:"Name is required.", errorAge:"Age must be 1–120.", errorHeight:"Invalid height.", errorWeight:"Invalid weight.",
+    emergencyImmediateTitle:"Danger signs? Do not wait to finish this check.", emergencyImmediateText:"Sudden trouble breathing, severe chest pain, fainting, seizures, or stroke signs: call 115 now.", call115Now:"Call 115",
     profileChoiceTitle:"Before starting", profileChoiceText:"Profile helps better results. You can skip, but results may be less accurate.",
     skipProfile:"Skip Profile", fillProfile:"Fill Profile", callTitle:"Call 115", callText:"Prototype only. In a real emergency, dial 115.",
     ok:"OK", profileSaved:"Profile saved!", guest:"Guest",
@@ -1632,6 +1628,7 @@ const translations = {
     emChoking:"Hóc dị vật", emChokingDesc:"Không nói, ho hoặc thở được.", emGeneralNote:"Nếu nguy hiểm đến tính mạng, gọi 115 ngay.",
     callEmergency:"Gọi 115", callFirst:"1. Gọi 115 trước", callFirstText:"Trong khi chờ, làm theo các bước dưới.", backToSituations:"← Quay lại", relatedLesson:"Bài học liên quan",
     errorName:"Vui lòng nhập họ tên.", errorAge:"Tuổi từ 1–120.", errorHeight:"Chiều cao không hợp lệ.", errorWeight:"Cân nặng không hợp lệ.",
+    emergencyImmediateTitle:"Có dấu hiệu nguy hiểm? Đừng chờ hoàn tất bài kiểm tra.", emergencyImmediateText:"Khó thở cấp, đau ngực dữ dội, ngất, co giật hoặc dấu hiệu đột quỵ: gọi 115 ngay.", call115Now:"Gọi 115",
     profileChoiceTitle:"Trước khi bắt đầu", profileChoiceText:"Profile giúp kết quả tốt hơn. Có thể bỏ qua nhưng kết quả kém chính xác hơn.",
     skipProfile:"Bỏ qua Profile", fillProfile:"Điền Profile", callTitle:"Gọi 115", callText:"Đây là prototype. Khẩn cấp thật hãy gọi 115 trên điện thoại.",
     ok:"OK", profileSaved:"Đã lưu hồ sơ!", guest:"Khách",
@@ -1971,21 +1968,18 @@ function resumeCheckDraft() {
 }
 function restartCheckDraft() {
   closeModal('resumeCheckModal'); clearHealthCheckData();
-  skippedProfile = false; setCheckActive(false);
-  if (!isProfileCompleted) showModal('profileChoiceModal'); else beginHealthCheckFlow();
+  skippedProfile = true; setCheckActive(false);
+  beginHealthCheckFlow();
 }
 function startHealthCheck() {
   if (isHealthCheckActive) { openPage('health-check'); return; }
   if (readHealthCheckDraft()) { showModal('resumeCheckModal'); return; }
   clearHealthCheckData();
-  skippedProfile = false;
+  skippedProfile = true;
   setCheckActive(false);
-  if (!isProfileCompleted) { showModal('profileChoiceModal'); return; }
   beginHealthCheckFlow();
 }
-function goToFillProfile() { closeModal('profileChoiceModal'); openPage('profile'); }
 function skipProfileAndStart() {
-  closeModal('profileChoiceModal');
   beginHealthCheckFlow();
   skippedProfile = true;
 }
@@ -2734,6 +2728,7 @@ showHealthCheckResumePrompt();
 </script>
 </body>
 </html>
+
 
 
 
