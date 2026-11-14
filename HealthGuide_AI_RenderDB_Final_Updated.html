@@ -856,7 +856,7 @@ h1, h2, h3, h4, .title, .page-title, .section-title {
   .body-reference-scroll { display:flex; justify-content:center; width:100%; overflow:hidden; margin:18px auto; }
   .body-reference-stage { position:relative; width:min(100%,340px); min-width:0; margin:0 auto; aspect-ratio:19/50; background:#fff; border:1px solid #e1e7ee; border-radius:18px; overflow:hidden; flex:0 1 340px; }
   .body-reference-stage > img { position:absolute; z-index:0; top:0; left:50%; height:100%; width:auto; max-width:none; object-fit:fill; transform:translateX(-50%) scaleX(1.1); }
-  .body-selection-overlay { position:absolute; z-index:2; inset:0; width:100%; height:100%; pointer-events:none; }
+  .body-selection-overlay { position:absolute; z-index:4; inset:0; width:100%; height:100%; pointer-events:none; }
   .body-reference-stage::after { content:""; display:block; position:absolute; z-index:1; top:0; left:0; right:0; height:10%; background:#fff; pointer-events:none; }
   .body-reference-map[data-active-gender="male"][data-active-view="front"] { left:-8.6%; }
   .body-reference-map[data-active-gender="male"][data-active-view="back"] { left:-93.9%; }
@@ -1404,6 +1404,11 @@ h1, h2, h3, h4, .title, .page-title, .section-title {
             <div class="result-card" id="facilitiesCard" style="display:none">
               <div class="result-section-label"><span class="dot warn"></span> <span data-i18n="nearbyFacilities">Nearby emergency facilities</span></div>
               <div id="resultFacilities"></div>
+            </div>
+
+            <div class="disclaimer" id="resultDisclaimer" hidden>
+              <svg class="ui-icon" style="flex-shrink:0;color:#92400e"><use href="#i-warning"></use></svg>
+              <span class="disclaimer-text"></span>
             </div>
 
             <div class="result-card">
@@ -2475,7 +2480,8 @@ function handleMockTurnResponse(response) {
     warning_signs: asArray(rawResult.warningSigns || rawResult.warning_signs || response.warningSigns || response.warning_signs),
     emergency_message: rawResult.emergencyMessage || rawResult.emergency_message || response.emergencyMessage || response.emergency_message || '',
     emergency_facilities: asArray(rawResult.emergencyFacilities || rawResult.emergency_facilities || response.emergencyFacilities || response.emergency_facilities).filter(item => item && typeof item === 'object'),
-    uncertainty: Number.isFinite(Number(response.confidenceScore)) ? (currentLang === 'vi' ? `Độ tin cậy từ Backend: ${Math.round(Number(response.confidenceScore) * 100)}%. Kết quả chỉ mang tính tham khảo.` : `Backend confidence: ${Math.round(Number(response.confidenceScore) * 100)}%. Informational only.`) : ''
+    uncertainty: Number.isFinite(Number(response.confidenceScore)) ? (currentLang === 'vi' ? `Độ tin cậy từ Backend: ${Math.round(Number(response.confidenceScore) * 100)}%. Kết quả chỉ mang tính tham khảo.` : `Backend confidence: ${Math.round(Number(response.confidenceScore) * 100)}%. Informational only.`) : '',
+    disclaimer: rawResult.disclaimer || response.disclaimer || ''
   };
   aiFinished = true;
   currentBackendQuestion = null;
@@ -2692,6 +2698,17 @@ async function goToResult(apiResponse, ageOverride = null) {
 
   document.getElementById('resultBody').innerText = areaLabel;
   document.getElementById('resultAnswers').innerText = aiAnswers.join(' · ') || '—';
+
+  // Render disclaimer
+  const disclaimerEl = document.getElementById('resultDisclaimer');
+  if (disclaimerEl) {
+    const disclaimerText = result.disclaimer || (currentLang === 'vi'
+      ? 'Kết quả này chỉ mang tính tham khảo và KHÔNG thay thế cho chẩn đoán của bác sĩ.'
+      : 'This result is for informational purposes only and does NOT replace a doctor\'s diagnosis.');
+    disclaimerEl.querySelector('.disclaimer-text').textContent = disclaimerText;
+    disclaimerEl.hidden = false;
+  }
+
   showResultMain();
   setCheckActive(false);
   try { sessionStorage.removeItem(HEALTH_CHECK_DRAFT_KEY); } catch (e) {}
