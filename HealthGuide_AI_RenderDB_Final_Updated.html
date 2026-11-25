@@ -636,6 +636,7 @@ input.error, select.error { border-color: var(--danger); background: var(--dange
 }
 .lesson-content { background: white; border: 1px solid var(--border); border-radius: 16px; padding: 24px; line-height: 1.7; box-shadow: var(--shadow); }
 .lesson-content h3 { margin-bottom: 12px; color: var(--green-dark); }
+.detail-section { margin-bottom:14px; } .detail-section strong { display:block; font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-bottom:4px; } .detail-section p { margin:0; font-size:14px; line-height:1.6; } .detail-section.warn { background:var(--danger-light,#fff5f5); border-left:3px solid var(--danger); padding:10px 12px; border-radius:0 8px 8px 0; }
 .lesson-content ol, .lesson-content ul { padding-left: 20px; margin: 12px 0; }
 .lesson-content li { margin-bottom: 8px; }
 
@@ -1471,8 +1472,17 @@ h1, h2, h3, h4, .title, .page-title, .section-title {
         <div class="eyebrow" data-i18n="locatorEyebrow">LOCATOR</div>
         <h2 data-i18n="nearbyHealthcare">Nearby Healthcare</h2>
         <div class="card" style="margin-top:16px;padding:30px;text-align:center">
-          <button class="btn btn-primary" onclick="requestLocation()"><svg class="inline-icon"><use href="#i-pin"></use></svg><span data-i18n="allowLocation">Allow Location</span></button>
-          <div id="locationStatus" class="muted" style="margin-top:10px;font-size:13px" data-i18n="locationNotRequested">Location status: Not requested</div>
+          <button class="btn btn-primary" onclick="requestLocation()"><svg class="inline-icon"><use href="#i-pin"></use></svg><span data-i18n="allowLocation">Cho phép định vị</span></button>
+          <div id="locationStatus" class="muted" style="margin-top:10px;font-size:13px">Chưa lấy vị trí</div>
+        </div>
+        <div id="nearbyList" style="margin-top:16px">
+          <p class="muted" style="font-size:13px;margin-bottom:12px">📍 Một số cơ sở y tế tham khảo tại Hà Nội:</p>
+          <div class="history-item"><div><strong>Bệnh viện Bạch Mai</strong><p class="muted" style="margin:3px 0 0;font-size:13px">78 Giải Phóng, Đống Đa, Hà Nội · ☎ 024 3869 3731</p></div><span class="history-badge">Đa khoa</span></div>
+          <div class="history-item"><div><strong>Bệnh viện Việt Đức</strong><p class="muted" style="margin:3px 0 0;font-size:13px">40 Tràng Thi, Hoàn Kiếm, Hà Nội · ☎ 024 3825 3531</p></div><span class="history-badge">Ngoại khoa</span></div>
+          <div class="history-item"><div><strong>Bệnh viện E</strong><p class="muted" style="margin:3px 0 0;font-size:13px">87 Trần Cung, Nghĩa Tân, Cầu Giấy · ☎ 024 3834 3181</p></div><span class="history-badge">Đa khoa</span></div>
+          <div class="history-item"><div><strong>Bệnh viện Đại học Y Hà Nội</strong><p class="muted" style="margin:3px 0 0;font-size:13px">1 Tôn Thất Tùng, Đống Đa, Hà Nội · ☎ 024 3574 7788</p></div><span class="history-badge">Đa khoa</span></div>
+          <div class="history-item"><div><strong>Phòng khám Đa khoa Medlatec</strong><p class="muted" style="margin:3px 0 0;font-size:13px">42–44 Nghĩa Dũng, Ba Đình, Hà Nội · ☎ 1900 56 56 56</p></div><span class="history-badge">Phòng khám</span></div>
+          <p class="muted" style="font-size:12px;margin-top:12px;text-align:center">Danh sách mang tính tham khảo. Vui lòng xác nhận giờ làm việc trước khi đến.</p>
         </div>
       </section>
 
@@ -1660,34 +1670,342 @@ const BODY_DETAIL_LABELS={en:{head:'Head',neck:'Neck',chest:'Chest',abdomen:'Abd
 const BODY_FOCUS_KEYS={front:{head:['front-head','front-scalp','front-forehead','front-eye','front-ear','front-nose','front-cheek','front-mouth','front-chin','front-jaw'],neck:['front-neck','front-throat'],chest:['front-chest','front-left-breast','front-right-breast'],abdomen:['front-abdomen','front-waist']},back:{head:['back-head','back-scalp','back-ear'],neck:['back-nape','back-neck','back-posterior-neck'],back:['back-upper-back','back-mid-back','back-lower-back','back-waist','back-lumbar-region','back-sacral-region','back-back']}};
 const BODY_REGION_GROUPS={front:[{area:'Head',en:'Head & neck',vi:'Đầu & cổ',regions:[['front-head','Head','Đầu'],['front-scalp','Scalp','Da đầu'],['front-forehead','Forehead','Trán'],['front-eye','Eye','Mắt'],['front-ear','Ear','Tai'],['front-nose','Nose','Mũi'],['front-cheek','Cheek','Má'],['front-mouth','Mouth','Miệng'],['front-chin','Chin','Cằm'],['front-jaw','Jaw','Hàm'],['front-neck','Neck','Cổ'],['front-throat','Throat','Họng']]},{area:'Chest',en:'Middle torso',vi:'Phần giữa thân',regions:[['front-chest','Chest','Ngực'],['front-left-breast','Left breast','Ngực trái'],['front-right-breast','Right breast','Ngực phải'],['front-abdomen','Abdomen','Bụng'],['front-waist','Waist','Eo']]},{area:'Arm',en:'Shoulder to hand',vi:'Vai đến bàn tay',regions:[['front-shoulder','Shoulder','Vai'],['front-upper-arm','Upper arm','Cánh tay trên'],['front-elbow','Elbow','Khuỷu tay'],['front-forearm','Forearm','Cẳng tay'],['front-wrist','Wrist','Cổ tay'],['front-hand','Hand','Bàn tay'],['front-palm','Palm','Lòng bàn tay'],['front-thumb','Thumb','Ngón cái'],['front-index-finger','Index finger','Ngón trỏ'],['front-middle-finger','Middle finger','Ngón giữa'],['front-ring-finger','Ring finger','Ngón áp út'],['front-little-finger','Little finger','Ngón út']]},{area:'Pelvis',en:'Pelvis to thigh',vi:'Vùng chậu đến đùi',regions:[['front-pelvis','Pelvis','Vùng chậu'],['front-hip','Hip','Hông'],['front-pubic-region','Pubic region','Vùng mu'],['front-external-genitalia','External genitalia','Cơ quan sinh dục ngoài'],['front-thigh','Thigh','Đùi'],['front-anterior-thigh','Anterior thigh','Mặt trước đùi']]},{area:'Leg',en:'Knee to foot',vi:'Đầu gối đến bàn chân',regions:[['front-knee','Knee','Đầu gối'],['front-ankle','Ankle','Cổ chân'],['front-foot','Foot','Bàn chân'],['front-dorsum-foot','Dorsum of foot','Mu bàn chân'],['front-toes','Toes','Ngón chân'],['front-big-toe','Big toe','Ngón chân cái'],['front-little-toe','Little toe','Ngón chân út']]}],back:[{area:'Head',en:'Head & neck',vi:'Đầu & cổ',regions:[['back-head','Head','Đầu'],['back-scalp','Scalp','Da đầu'],['back-ear','Ear','Tai'],['back-nape','Nape','Gáy'],['back-neck','Neck','Cổ'],['back-posterior-neck','Posterior neck','Mặt sau cổ']]},{area:'Back',en:'Middle torso',vi:'Phần giữa thân',regions:[['back-upper-back','Upper back','Lưng trên'],['back-mid-back','Mid back','Lưng giữa'],['back-lower-back','Lower back','Lưng dưới'],['back-waist','Waist','Eo'],['back-lumbar-region','Lumbar region','Vùng thắt lưng'],['back-sacral-region','Sacral region','Vùng xương cùng'],['back-back','Back','Lưng']]},{area:'Arm',en:'Shoulder to hand',vi:'Vai đến bàn tay',regions:[['back-shoulder','Shoulder','Vai'],['back-scapular-region','Scapular region','Vùng bả vai'],['back-posterior-upper-arm','Posterior upper arm','Mặt sau cánh tay trên'],['back-elbow','Elbow','Khuỷu tay'],['back-forearm','Forearm','Cẳng tay'],['back-wrist','Wrist','Cổ tay'],['back-dorsum-hand','Dorsum of hand','Mu bàn tay'],['back-thumb','Thumb','Ngón cái'],['back-index-finger','Index finger','Ngón trỏ'],['back-middle-finger','Middle finger','Ngón giữa'],['back-ring-finger','Ring finger','Ngón áp út'],['back-little-finger','Little finger','Ngón út']]},{area:'Pelvis',en:'Pelvis to thigh',vi:'Vùng chậu đến đùi',regions:[['back-hip','Hip','Hông'],['back-pelvic-region','Pelvic region','Vùng chậu'],['back-buttock','Buttock','Mông'],['back-gluteal-region','Gluteal region','Vùng mông'],['back-posterior-thigh','Posterior thigh','Mặt sau đùi']]},{area:'Leg',en:'Knee to foot',vi:'Đầu gối đến bàn chân',regions:[['back-popliteal-region','Popliteal region','Vùng khoeo'],['back-knee','Knee','Đầu gối'],['back-calf','Calf','Bắp chân'],['back-ankle','Ankle','Cổ chân'],['back-heel','Heel','Gót chân'],['back-foot','Foot','Bàn chân'],['back-sole','Sole','Lòng bàn chân'],['back-toes','Toes','Ngón chân']]}]};
 const DISEASES = [
-  { id:'Dengue', tag:'Viral', en:{name:'Dengue Fever', desc:'Mosquito-borne infection.', detail:'High fever, headache, muscle pain, rash.'}, vi:{name:'Sốt xuất huyết', desc:'Bệnh do muỗi.', detail:'Sốt cao, đau đầu, đau cơ, phát ban.'} },
-  { id:'Cold', tag:'Respiratory', en:{name:'Common Cold', desc:'Mild respiratory infection.', detail:'Runny nose, sore throat, cough.'}, vi:{name:'Cảm lạnh', desc:'Nhiễm trùng hô hấp nhẹ.', detail:'Sổ mũi, đau họng, ho.'} },
-  { id:'Flu', tag:'Viral', en:{name:'Influenza', desc:'Contagious illness.', detail:'Sudden fever, body aches, fatigue.'}, vi:{name:'Cúm', desc:'Bệnh truyền nhiễm.', detail:'Sốt cao đột ngột, đau nhức, mệt.'} },
-  { id:'Asthma', tag:'Chronic', en:{name:'Asthma', desc:'Chronic airway condition.', detail:'Shortness of breath, wheezing.'}, vi:{name:'Hen suyễn', desc:'Bệnh đường thở mạn tính.', detail:'Khó thở, khò khè.'} },
-  { id:'Diabetes', tag:'Metabolic', en:{name:'Diabetes', desc:'Blood sugar disorder.', detail:'Thirst, frequent urination, fatigue.'}, vi:{name:'Tiểu đường', desc:'Rối loạn đường huyết.', detail:'Khát nhiều, tiểu nhiều, mệt.'} },
-  { id:'Migraine', tag:'Neurological', en:{name:'Migraine', desc:'Severe headaches.', detail:'Headache with nausea, light sensitivity.'}, vi:{name:'Đau nửa đầu', desc:'Đau đầu dữ dội.', detail:'Đau đầu, buồn nôn, sợ ánh sáng.'} },
-  { id:'HTN', tag:'Chronic', en:{name:'Hypertension', desc:'High blood pressure.', detail:'Often silent; heart and stroke risk.'}, vi:{name:'Tăng huyết áp', desc:'Huyết áp cao.', detail:'Thường im lặng; nguy cơ tim, đột quỵ.'} },
-  { id:'Gastritis', tag:'Digestive', en:{name:'Gastritis', desc:'Stomach lining inflammation.', detail:'Upper abdominal pain, nausea.'}, vi:{name:'Viêm dạ dày', desc:'Viêm niêm mạc dạ dày.', detail:'Đau thượng vị, buồn nôn.'} },
-  { id:'Rhinitis', tag:'Allergy', en:{name:'Allergic Rhinitis', desc:'Nose allergy.', detail:'Sneezing, runny nose, itchy eyes.'}, vi:{name:'Viêm mũi dị ứng', desc:'Dị ứng mũi.', detail:'Hắt hơi, sổ mũi, ngứa mắt.'} }
+  { id:'Dengue', tag:'Viral',
+    en:{name:'Dengue Fever', desc:'Mosquito-borne viral infection.',
+        symptoms:'High fever (39–40°C), severe headache, pain behind the eyes, joint & muscle pain, skin rash (appears day 3–5), nausea.',
+        cause:'Aedes mosquito bite carrying dengue virus (DENV 1–4).',
+        treatment:'Rest, fluids, paracetamol for fever. Avoid aspirin/ibuprofen. Monitor platelet count.',
+        see_doctor:'Immediately if bleeding gums, blood in urine/stool, persistent vomiting, or difficulty breathing.'},
+    vi:{name:'Sốt xuất huyết', desc:'Bệnh do muỗi Aedes truyền.',
+        symptoms:'Sốt cao (39–40°C), đau đầu dữ dội, đau sau mắt, đau cơ khớp, phát ban (xuất hiện ngày 3–5), buồn nôn.',
+        cause:'Muỗi Aedes đốt mang virus dengue (DENV 1–4).',
+        treatment:'Nghỉ ngơi, bù nước, paracetamol hạ sốt. Tránh aspirin/ibuprofen. Theo dõi tiểu cầu.',
+        see_doctor:'Ngay khi chảy máu chân răng, tiểu ra máu, nôn liên tục hoặc khó thở.'} },
+  { id:'Cold', tag:'Respiratory',
+    en:{name:'Common Cold', desc:'Mild upper respiratory infection.',
+        symptoms:'Runny or stuffy nose, sore throat, sneezing, mild cough, low-grade fever, fatigue.',
+        cause:'Rhinovirus (most common), coronavirus or other respiratory viruses.',
+        treatment:'Rest, fluids, saline nasal rinse, over-the-counter decongestants or antihistamines.',
+        see_doctor:'If fever >38.5°C lasting >3 days, difficulty breathing, or symptoms worsen after day 7.'},
+    vi:{name:'Cảm lạnh', desc:'Nhiễm trùng hô hấp trên nhẹ.',
+        symptoms:'Sổ mũi hoặc nghẹt mũi, đau họng, hắt hơi, ho nhẹ, sốt nhẹ, mệt mỏi.',
+        cause:'Rhinovirus (phổ biến nhất), coronavirus hoặc virus hô hấp khác.',
+        treatment:'Nghỉ ngơi, bù nước, rửa mũi nước muối, thuốc không kê đơn.',
+        see_doctor:'Nếu sốt >38.5°C kéo dài >3 ngày, khó thở, hoặc triệu chứng nặng hơn sau ngày thứ 7.'} },
+  { id:'Flu', tag:'Viral',
+    en:{name:'Influenza', desc:'Contagious respiratory illness.',
+        symptoms:'Sudden high fever, chills, body aches, headache, dry cough, fatigue, sore throat.',
+        cause:'Influenza A or B virus, spread by droplets.',
+        treatment:'Rest, fluids, antiviral (oseltamivir) if within 48h of onset, paracetamol for fever.',
+        see_doctor:'If difficulty breathing, persistent chest pain, confusion, or severe vomiting.'},
+    vi:{name:'Cúm', desc:'Bệnh hô hấp lây nhiễm.',
+        symptoms:'Sốt cao đột ngột, ớn lạnh, đau nhức toàn thân, đau đầu, ho khan, mệt mỏi, đau họng.',
+        cause:'Virus cúm A hoặc B, lây qua giọt bắn.',
+        treatment:'Nghỉ ngơi, bù nước, thuốc kháng virus (oseltamivir) trong 48h đầu, paracetamol.',
+        see_doctor:'Nếu khó thở, đau tức ngực, lú lẫn hoặc nôn ói nặng.'} },
+  { id:'Asthma', tag:'Chronic',
+    en:{name:'Asthma', desc:'Chronic inflammatory airway disease.',
+        symptoms:'Recurrent wheezing, shortness of breath, chest tightness, cough (worse at night/early morning).',
+        cause:'Allergens, exercise, cold air, smoke, respiratory infections, stress.',
+        treatment:'Inhaled bronchodilators (reliever), inhaled corticosteroids (preventer), avoid triggers.',
+        see_doctor:'Immediately if reliever inhaler gives no relief, lips/fingernails turn blue, or cannot speak in full sentences.'},
+    vi:{name:'Hen suyễn', desc:'Bệnh viêm đường thở mạn tính.',
+        symptoms:'Khò khè tái phát, khó thở, tức ngực, ho (nặng hơn về đêm/sáng sớm).',
+        cause:'Dị nguyên, vận động, không khí lạnh, khói thuốc, nhiễm trùng hô hấp, căng thẳng.',
+        treatment:'Thuốc giãn phế quản hít (cắt cơn), corticosteroid hít (dự phòng), tránh yếu tố khởi phát.',
+        see_doctor:'Ngay khi thuốc cắt cơn không hiệu quả, môi/đầu ngón tay tím, hoặc không nói được câu hoàn chỉnh.'} },
+  { id:'Diabetes', tag:'Metabolic',
+    en:{name:'Diabetes', desc:'Chronic blood glucose regulation disorder.',
+        symptoms:'Excessive thirst, frequent urination, unexplained weight loss, blurred vision, slow-healing wounds, fatigue.',
+        cause:'Type 1: autoimmune destruction of beta cells. Type 2: insulin resistance & relative deficiency.',
+        treatment:'Lifestyle changes, blood sugar monitoring, oral medications or insulin as needed.',
+        see_doctor:'If blood glucose >300 mg/dL, sudden vision change, numbness in feet, or chest pain.'},
+    vi:{name:'Tiểu đường', desc:'Rối loạn điều hòa đường huyết mạn tính.',
+        symptoms:'Khát nước nhiều, tiểu nhiều, sụt cân không rõ lý do, mờ mắt, vết thương lâu lành, mệt mỏi.',
+        cause:'Type 1: tự miễn phá hủy tế bào beta. Type 2: đề kháng insulin và thiếu tương đối.',
+        treatment:'Thay đổi lối sống, theo dõi đường huyết, thuốc uống hoặc insulin khi cần.',
+        see_doctor:'Nếu đường huyết >300 mg/dL, thay đổi thị lực đột ngột, tê bì bàn chân, hoặc đau tức ngực.'} },
+  { id:'Migraine', tag:'Neurological',
+    en:{name:'Migraine', desc:'Recurring severe headaches with neurological symptoms.',
+        symptoms:'Pulsating headache (usually one side), nausea/vomiting, sensitivity to light & sound, aura (some patients).',
+        cause:'Genetic predisposition, triggers include stress, hormonal changes, certain foods, lack of sleep.',
+        treatment:'Rest in dark quiet room, triptans or NSAIDs for acute attacks, preventive medication if frequent.',
+        see_doctor:'Sudden worst headache of life, headache with fever/stiff neck, or new headache after age 50.'},
+    vi:{name:'Đau nửa đầu', desc:'Đau đầu dữ dội tái phát kèm triệu chứng thần kinh.',
+        symptoms:'Đau đầu kiểu mạch đập (thường một bên), buồn nôn/nôn, nhạy cảm ánh sáng & âm thanh, aura (một số bệnh nhân).',
+        cause:'Di truyền, tác nhân khởi phát: căng thẳng, thay đổi hormone, một số thực phẩm, thiếu ngủ.',
+        treatment:'Nghỉ ngơi nơi tối yên tĩnh, triptan hoặc NSAID khi cơn cấp, thuốc dự phòng nếu cơn thường xuyên.',
+        see_doctor:'Đau đầu đột ngột dữ dội nhất từ trước đến nay, đau đầu kèm sốt/cứng gáy, hoặc đau đầu mới khởi phát sau 50 tuổi.'} },
+  { id:'HTN', tag:'Chronic',
+    en:{name:'Hypertension', desc:'Persistently elevated blood pressure.',
+        symptoms:'Usually no symptoms ("silent killer"). Severe: headache, dizziness, blurred vision, nosebleed.',
+        cause:'Primary (unknown), secondary (kidney disease, hormonal disorders, medications).',
+        treatment:'Lifestyle: low-salt diet, exercise, quit smoking. Medications: ACE inhibitors, beta-blockers, diuretics.',
+        see_doctor:'If BP >180/120 mmHg, chest pain, sudden headache, or vision changes.'},
+    vi:{name:'Tăng huyết áp', desc:'Huyết áp tăng dai dẳng.',
+        symptoms:'Thường không có triệu chứng ("kẻ giết người thầm lặng"). Nặng: đau đầu, chóng mặt, mờ mắt, chảy máu mũi.',
+        cause:'Nguyên phát (không rõ nguyên nhân), thứ phát (bệnh thận, rối loạn hormone, thuốc).',
+        treatment:'Lối sống: ăn ít muối, tập thể dục, bỏ thuốc lá. Thuốc: ức chế ACE, chẹn beta, lợi tiểu.',
+        see_doctor:'Nếu HA >180/120 mmHg, đau ngực, đau đầu đột ngột hoặc thay đổi thị lực.'} },
+  { id:'Gastritis', tag:'Digestive',
+    en:{name:'Gastritis', desc:'Inflammation of the stomach lining.',
+        symptoms:'Upper abdominal pain/burning, nausea, vomiting, bloating, feeling full quickly, loss of appetite.',
+        cause:'H. pylori bacteria, NSAIDs/aspirin overuse, alcohol, stress, autoimmune conditions.',
+        treatment:'Antacids, proton pump inhibitors (omeprazole), antibiotics if H. pylori positive, avoid triggers.',
+        see_doctor:'If vomiting blood, black tarry stools, severe pain, or unintended weight loss.'},
+    vi:{name:'Viêm dạ dày', desc:'Viêm niêm mạc dạ dày.',
+        symptoms:'Đau/nóng rát thượng vị, buồn nôn, nôn, đầy hơi, nhanh no, chán ăn.',
+        cause:'Vi khuẩn H. pylori, lạm dụng NSAID/aspirin, rượu bia, căng thẳng, bệnh tự miễn.',
+        treatment:'Thuốc antacid, ức chế bơm proton (omeprazole), kháng sinh nếu dương tính H. pylori.',
+        see_doctor:'Nếu nôn ra máu, phân đen như bã cà phê, đau dữ dội hoặc sụt cân không rõ lý do.'} },
+  { id:'Rhinitis', tag:'Allergy',
+    en:{name:'Allergic Rhinitis', desc:'Nasal inflammation caused by allergens.',
+        symptoms:'Sneezing, runny/stuffy nose, itchy eyes & nose, watery eyes, postnasal drip.',
+        cause:'Dust mites, pollen, pet dander, mold. Triggered year-round or seasonally.',
+        treatment:'Antihistamines, nasal corticosteroid sprays, avoid allergens, nasal irrigation.',
+        see_doctor:'If symptoms severely impact daily life, signs of sinusitis (facial pain, yellow discharge), or asthma co-exists.'},
+    vi:{name:'Viêm mũi dị ứng', desc:'Viêm mũi do dị nguyên.',
+        symptoms:'Hắt hơi, sổ mũi/nghẹt mũi, ngứa mắt & mũi, chảy nước mắt, dịch mũi chảy xuống họng.',
+        cause:'Mạt bụi, phấn hoa, lông thú, nấm mốc. Xảy ra quanh năm hoặc theo mùa.',
+        treatment:'Thuốc kháng histamine, xịt mũi corticosteroid, tránh dị nguyên, rửa mũi.',
+        see_doctor:'Nếu triệu chứng ảnh hưởng nặng sinh hoạt, có dấu hiệu viêm xoang (đau mặt, dịch vàng), hoặc kèm hen suyễn.'} }
 ];
 const TAG_I18N = { en:{Viral:'Viral',Respiratory:'Respiratory',Chronic:'Chronic',Metabolic:'Metabolic',Neurological:'Neurological',Digestive:'Digestive',Allergy:'Allergy'}, vi:{Viral:'Virus',Respiratory:'Hô hấp',Chronic:'Mạn tính',Metabolic:'Chuyển hóa',Neurological:'Thần kinh',Digestive:'Tiêu hóa',Allergy:'Dị ứng'} };
-const HISTORY_DATA = [
-  { en:{date:'August 20, 2026', note:'Headache, Fatigue (Head)', badge:'Common Cold'}, vi:{date:'20 tháng 8, 2026', note:'Đau đầu, mệt (Đầu)', badge:'Cảm lạnh'} },
-  { en:{date:'August 12, 2026', note:'Chest discomfort (Chest)', badge:'Muscle strain'}, vi:{date:'12 tháng 8, 2026', note:'Khó chịu ngực (Ngực)', badge:'Căng cơ'} },
-  { en:{date:'July 28, 2026', note:'Skin rash (Skin)', badge:'Allergic reaction'}, vi:{date:'28 tháng 7, 2026', note:'Phát ban (Da)', badge:'Phản ứng dị ứng'} }
-];
+function getHistoryData() {
+  try { return JSON.parse(localStorage.getItem('hg_history_v1')||'[]'); } catch(e) { return []; }
+}
+function saveHistoryEntry(entry) {
+  try {
+    const list=getHistoryData(); list.unshift(entry);
+    if(list.length>50) list.pop();
+    localStorage.setItem('hg_history_v1', JSON.stringify(list));
+  } catch(e) {}
+}
 const LESSONS = {
-  cpr:{ en:`<h3>CPR – Hands-only</h3><ol><li>Call 115.</li><li>Hand on center of chest.</li><li>Push 100–120/min.</li><li>Continue until help arrives.</li></ol>`, vi:`<h3>CPR – Chỉ dùng tay</h3><ol><li>Gọi 115.</li><li>Tay giữa ngực.</li><li>Ấn 100–120 lần/phút.</li><li>Tiếp tục đến khi có hỗ trợ.</li></ol>` },
-  stroke:{ en:`<h3>Stroke – FAST</h3><ul><li><strong>F</strong> Face droop</li><li><strong>A</strong> Arm weakness</li><li><strong>S</strong> Speech difficulty</li><li><strong>T</strong> Call 115</li></ul>`, vi:`<h3>Đột quỵ – FAST</h3><ul><li><strong>F</strong> Mặt xệ</li><li><strong>A</strong> Yếu tay</li><li><strong>S</strong> Nói khó</li><li><strong>T</strong> Gọi 115</li></ul>` },
-  choking:{ en:`<h3>Choking – Heimlich</h3><ol><li>Ask if choking.</li><li>Fist above navel.</li><li>Thrust inward and up.</li></ol>`, vi:`<h3>Hóc – Heimlich</h3><ol><li>Hỏi có bị hóc không.</li><li>Nắm đấm trên rốn.</li><li>Đẩy vào trong và lên.</li></ol>` },
-  dengue:{ en:`<h3>Dengue warning</h3><ul><li>Severe abdominal pain</li><li>Persistent vomiting</li><li>Bleeding</li><li>Extreme fatigue</li></ul>`, vi:`<h3>Cảnh báo sốt xuất huyết</h3><ul><li>Đau bụng dữ dội</li><li>Nôn nhiều</li><li>Chảy máu</li><li>Mệt lả</li></ul>` },
-  burn:{ en:`<h3>Minor burn</h3><ol><li>Cool water 10–20 min.</li><li>No ice/butter.</li><li>Cover loosely.</li></ol>`, vi:`<h3>Bỏng nhẹ</h3><ol><li>Nước mát 10–20 phút.</li><li>Không đá/bơ.</li><li>Che nhẹ.</li></ol>` },
-  fever:{ en:`<h3>Fever at home</h3><ul><li>Rest, fluids.</li><li>Light clothing.</li><li>Watch warning signs.</li></ul>`, vi:`<h3>Sốt tại nhà</h3><ul><li>Nghỉ ngơi, uống nước.</li><li>Mặc mỏng.</li><li>Theo dõi dấu hiệu nguy hiểm.</li></ul>` }
+  cpr:{
+    en:`<h3>CPR – Hands-only</h3>
+<p>Hands-only CPR is recommended for untrained bystanders and is nearly as effective as full CPR.</p>
+<ol class="step-list">
+<li><strong>Call 115</strong> first or ask someone nearby to call.</li>
+<li>Place the person on their back on a firm surface.</li>
+<li>Interlock hands and place the heel on the <strong>centre of the chest</strong>.</li>
+<li>Push down <strong>5–6 cm</strong> at <strong>100–120 compressions/min</strong>.</li>
+<li>Keep going until paramedics arrive or the person revives.</li>
+</ol>
+<p class="muted" style="margin-top:12px;font-size:13px">💡 Hum "Stayin' Alive" to keep the right rhythm.</p>`,
+    vi:`<h3>CPR – Chỉ dùng tay</h3>
+<p>CPR chỉ dùng tay được khuyến nghị cho người chưa qua đào tạo và hiệu quả gần tương đương CPR đầy đủ.</p>
+<ol class="step-list">
+<li><strong>Gọi 115</strong> trước hoặc nhờ người xung quanh gọi.</li>
+<li>Đặt nạn nhân nằm ngửa trên bề mặt phẳng cứng.</li>
+<li>Đan ngón tay, đặt gót bàn tay vào <strong>giữa ngực</strong>.</li>
+<li>Ấn sâu <strong>5–6 cm</strong>, tốc độ <strong>100–120 lần/phút</strong>.</li>
+<li>Tiếp tục đến khi xe cấp cứu đến hoặc nạn nhân hồi phục.</li>
+</ol>
+<p class="muted" style="margin-top:12px;font-size:13px">💡 Hát nhẩm "Stayin' Alive" để giữ nhịp đúng.</p>`
+  },
+  stroke:{
+    en:`<h3>Stroke – Act FAST</h3>
+<p>Every minute counts. Brain cells die rapidly during a stroke.</p>
+<div class="fast-box" style="margin:14px 0">
+  <div class="fast-item"><strong>F</strong><span>Face drooping?</span></div>
+  <div class="fast-item"><strong>A</strong><span>Arm weakness?</span></div>
+  <div class="fast-item"><strong>S</strong><span>Speech slurred?</span></div>
+  <div class="fast-item"><strong>T</strong><span>Time — call 115</span></div>
+</div>
+<ul class="step-list">
+<li>Call 115 immediately and say "suspected stroke".</li>
+<li>Keep them calm and still — do not give food or water.</li>
+<li>Note the exact time symptoms started.</li>
+<li>If unconscious but breathing, place in recovery position.</li>
+</ul>
+<p class="muted" style="margin-top:12px;font-size:13px">💡 Treatment is most effective within 4.5 hours of symptom onset.</p>`,
+    vi:`<h3>Đột quỵ – Hành động NHANH</h3>
+<p>Mỗi phút đều quan trọng. Tế bào não chết nhanh trong đột quỵ.</p>
+<div class="fast-box" style="margin:14px 0">
+  <div class="fast-item"><strong>F</strong><span>Miệng méo?</span></div>
+  <div class="fast-item"><strong>A</strong><span>Tay yếu?</span></div>
+  <div class="fast-item"><strong>S</strong><span>Nói ngọng?</span></div>
+  <div class="fast-item"><strong>T</strong><span>Gọi 115 ngay</span></div>
+</div>
+<ul class="step-list">
+<li>Gọi 115 ngay và nói "nghi đột quỵ".</li>
+<li>Giữ người bệnh yên tĩnh — không cho ăn uống.</li>
+<li>Ghi lại chính xác thời điểm xuất hiện triệu chứng.</li>
+<li>Nếu bất tỉnh nhưng còn thở, đặt tư thế nằm nghiêng an toàn.</li>
+</ul>
+<p class="muted" style="margin-top:12px;font-size:13px">💡 Điều trị hiệu quả nhất trong 4,5 giờ đầu kể từ khi có triệu chứng.</p>`
+  },
+  choking:{
+    en:`<h3>Choking – Heimlich Manoeuvre</h3>
+<p>Act quickly — a choking person can lose consciousness in minutes.</p>
+<ol class="step-list">
+<li>Ask "Are you choking?" — if they can cough, encourage coughing hard.</li>
+<li>If they cannot breathe, call 115 and start immediately.</li>
+<li>Give <strong>5 firm back blows</strong> between shoulder blades.</li>
+<li>Give <strong>5 abdominal thrusts</strong>: fist above navel, sharp inward-upward thrust.</li>
+<li>Alternate until the object is expelled or help arrives.</li>
+<li>If unresponsive → start CPR.</li>
+</ol>
+<p class="muted" style="margin-top:12px;font-size:13px">⚠️ For infants: use back blows + chest thrusts only (no abdominal thrusts).</p>`,
+    vi:`<h3>Hóc dị vật – Thủ thuật Heimlich</h3>
+<p>Hành động nhanh — người bị hóc có thể mất ý thức trong vài phút.</p>
+<ol class="step-list">
+<li>Hỏi "Bạn có bị hóc không?" — nếu còn ho được, động viên ho mạnh.</li>
+<li>Nếu không thở được, gọi 115 và bắt đầu ngay.</li>
+<li>Vỗ <strong>5 cái mạnh</strong> vào giữa hai bả vai.</li>
+<li>Thực hiện <strong>5 cái đẩy bụng</strong>: nắm tay trên rốn, đẩy vào trong và lên trên.</li>
+<li>Xen kẽ cho đến khi dị vật ra hoặc có cấp cứu.</li>
+<li>Nếu bất tỉnh → bắt đầu CPR.</li>
+</ol>
+<p class="muted" style="margin-top:12px;font-size:13px">⚠️ Với trẻ sơ sinh: chỉ dùng vỗ lưng + ép ngực, không ép bụng.</p>`
+  },
+  dengue:{
+    en:`<h3>Dengue Fever – What to Do</h3>
+<p>There is no specific antiviral treatment. Management focuses on symptoms and preventing complications.</p>
+<ul class="step-list">
+<li><strong>Drink 2–3 L of fluid daily</strong>: water, ORS, coconut water, fruit juice.</li>
+<li>Take <strong>paracetamol</strong> for fever and pain. Do NOT take aspirin or ibuprofen.</li>
+<li>Rest and monitor your temperature twice daily.</li>
+<li>Watch for warning signs: bleeding gums, blood in urine, persistent vomiting, severe abdominal pain.</li>
+<li>Get a platelet count test on days 4–6 of fever.</li>
+</ul>
+<p class="muted" style="margin-top:12px;font-size:13px">💡 Use mosquito repellent and sleep under nets to prevent dengue.</p>`,
+    vi:`<h3>Sốt xuất huyết – Cần làm gì</h3>
+<p>Không có thuốc kháng virus đặc hiệu. Điều trị tập trung vào triệu chứng và ngăn biến chứng.</p>
+<ul class="step-list">
+<li><strong>Uống 2–3 lít nước mỗi ngày</strong>: nước lọc, ORS, nước dừa, nước trái cây.</li>
+<li>Dùng <strong>paracetamol</strong> hạ sốt và giảm đau. KHÔNG dùng aspirin hoặc ibuprofen.</li>
+<li>Nghỉ ngơi và theo dõi nhiệt độ 2 lần/ngày.</li>
+<li>Chú ý dấu hiệu nguy hiểm: chảy máu chân răng, tiểu ra máu, nôn liên tục, đau bụng dữ dội.</li>
+<li>Xét nghiệm tiểu cầu vào ngày 4–6 của sốt.</li>
+</ul>
+<p class="muted" style="margin-top:12px;font-size:13px">💡 Dùng kem chống muỗi và ngủ màn để phòng sốt xuất huyết.</p>`
+  },
+  burn:{
+    en:`<h3>Burns – First Aid</h3>
+<p>Quick action in the first few minutes significantly reduces damage.</p>
+<ol class="step-list">
+<li><strong>Cool with running water</strong> for 20 minutes. Do not use ice, butter or toothpaste.</li>
+<li>Remove jewellery, watches and clothing near the burn (before swelling starts).</li>
+<li>Cover loosely with a clean non-fluffy dressing or cling film.</li>
+<li>Do NOT burst blisters — this risks infection.</li>
+<li>Take paracetamol or ibuprofen for pain.</li>
+</ol>
+<p class="muted" style="margin-top:12px;font-size:13px">🚨 Go to ER if: burn larger than palm, on face/hands/genitals/joints, chemical/electrical burn, or in a child under 5.</p>`,
+    vi:`<h3>Bỏng – Sơ cứu</h3>
+<p>Hành động nhanh trong vài phút đầu giúp giảm đáng kể tổn thương.</p>
+<ol class="step-list">
+<li><strong>Dội nước mát chảy</strong> trong 20 phút. Không dùng đá, bơ hay kem đánh răng.</li>
+<li>Tháo trang sức, đồng hồ và quần áo gần vùng bỏng (trước khi sưng).</li>
+<li>Băng nhẹ bằng gạc sạch không bông hoặc màng bọc thực phẩm.</li>
+<li>KHÔNG chọc vỡ bọng nước — dễ gây nhiễm trùng.</li>
+<li>Dùng paracetamol hoặc ibuprofen giảm đau.</li>
+</ol>
+<p class="muted" style="margin-top:12px;font-size:13px">🚨 Đến cấp cứu ngay nếu: bỏng rộng hơn lòng bàn tay, bỏng mặt/tay/bộ phận sinh dục/khớp, bỏng hoá chất/điện, hoặc trẻ dưới 5 tuổi.</p>`
+  },
+  fever:{
+    en:`<h3>Fever – Managing at Home</h3>
+<p>Fever is a natural immune response. Most fevers in adults (38–39°C) can be managed at home.</p>
+<ul class="step-list">
+<li>Take <strong>paracetamol</strong> (500–1000 mg) or <strong>ibuprofen</strong> as directed.</li>
+<li>Stay hydrated: water, electrolyte drinks, broths.</li>
+<li>Rest and keep the room cool and ventilated.</li>
+<li>Wear light clothing; use a damp cloth on forehead if uncomfortable.</li>
+<li>Monitor temperature every 4–6 hours.</li>
+</ul>
+<p class="muted" style="margin-top:12px;font-size:13px">🚨 Seek care immediately if: fever >39.5°C not responding to medication, difficulty breathing, stiff neck, skin rash, confusion, or fever in infant under 3 months.</p>`,
+    vi:`<h3>Sốt – Xử lý tại nhà</h3>
+<p>Sốt là phản ứng miễn dịch tự nhiên. Hầu hết sốt ở người lớn (38–39°C) có thể xử lý tại nhà.</p>
+<ul class="step-list">
+<li>Dùng <strong>paracetamol</strong> (500–1000 mg) hoặc <strong>ibuprofen</strong> theo hướng dẫn.</li>
+<li>Bù nước: nước lọc, nước điện giải, cháo loãng.</li>
+<li>Nghỉ ngơi, giữ phòng thoáng mát.</li>
+<li>Mặc quần áo nhẹ; chườm khăn ướt mát lên trán nếu khó chịu.</li>
+<li>Theo dõi nhiệt độ mỗi 4–6 giờ.</li>
+</ul>
+<p class="muted" style="margin-top:12px;font-size:13px">🚨 Đến cơ sở y tế ngay nếu: sốt >39.5°C không hạ sau thuốc, khó thở, cứng gáy, nổi ban, lú lẫn, hoặc trẻ dưới 3 tháng bị sốt.</p>`
+  }
 };
 const EM_GUIDES = {
-  stroke:{ en:`<h3 style="color:var(--danger)">Stroke – FAST</h3><div class="fast-box"><div class="fast-item"><strong>F</strong><span>Face</span></div><div class="fast-item"><strong>A</strong><span>Arms</span></div><div class="fast-item"><strong>S</strong><span>Speech</span></div><div class="fast-item"><strong>T</strong><span>115</span></div></div><ol class="step-list"><li>Call <strong>115</strong>.</li><li>Keep still. No food/drink.</li><li>Check breathing → CPR if needed.</li><li>Stay until help arrives.</li></ol>`, vi:`<h3 style="color:var(--danger)">Đột quỵ – FAST</h3><div class="fast-box"><div class="fast-item"><strong>F</strong><span>Mặt</span></div><div class="fast-item"><strong>A</strong><span>Tay</span></div><div class="fast-item"><strong>S</strong><span>Nói</span></div><div class="fast-item"><strong>T</strong><span>115</span></div></div><ol class="step-list"><li>Gọi <strong>115</strong>.</li><li>Nằm yên. Không ăn uống.</li><li>Kiểm tra thở → CPR nếu cần.</li><li>Ở bên đến khi có người đến.</li></ol>` },
-  cpr:{ en:`<h3 style="color:var(--danger)">CPR</h3><ol class="step-list"><li>Call <strong>115</strong>.</li><li>Flat surface.</li><li>Hands on center of chest.</li><li>Push <strong>100–120/min</strong>.</li><li>Continue until help arrives.</li></ol>`, vi:`<h3 style="color:var(--danger)">CPR</h3><ol class="step-list"><li>Gọi <strong>115</strong>.</li><li>Mặt phẳng cứng.</li><li>Tay giữa ngực.</li><li>Ấn <strong>100–120 lần/phút</strong>.</li><li>Tiếp tục đến khi có hỗ trợ.</li></ol>` },
-  choking:{ en:`<h3 style="color:var(--danger)">Choking</h3><ol class="step-list"><li>Confirm choking.</li><li>Call <strong>115</strong>.</li><li>Heimlich thrusts.</li><li>If unresponsive → CPR.</li></ol>`, vi:`<h3 style="color:var(--danger)">Hóc dị vật</h3><ol class="step-list"><li>Xác nhận bị hóc.</li><li>Gọi <strong>115</strong>.</li><li>Thủ thuật Heimlich.</li><li>Bất tỉnh → CPR.</li></ol>` }
+  stroke:{
+    en:`<h3 style="color:var(--danger)">Suspected Stroke – Act FAST</h3>
+<div class="fast-box"><div class="fast-item"><strong>F</strong><span>Face drooping?</span></div><div class="fast-item"><strong>A</strong><span>Arm weakness?</span></div><div class="fast-item"><strong>S</strong><span>Speech slurred?</span></div><div class="fast-item"><strong>T</strong><span>Time to call 115</span></div></div>
+<ol class="step-list">
+<li>Call <strong>115</strong> immediately — say "suspected stroke".</li>
+<li>Keep the person <strong>calm and still</strong>. Do not let them walk around.</li>
+<li>Do <strong>not</strong> give food, water or any medication.</li>
+<li>Lay them on their side if unconscious and breathing normally.</li>
+<li>Check breathing every minute. Start CPR if breathing stops.</li>
+<li>Stay with them and unlock the door so paramedics can enter.</li>
+</ol>
+<p class="muted" style="margin-top:10px;font-size:13px">⚠️ Symptoms must have started within the last 4.5 hours for treatment to be most effective.</p>`,
+    vi:`<h3 style="color:var(--danger)">Nghi ngờ Đột quỵ – Hành động NHANH</h3>
+<div class="fast-box"><div class="fast-item"><strong>F</strong><span>Miệng méo?</span></div><div class="fast-item"><strong>A</strong><span>Tay yếu?</span></div><div class="fast-item"><strong>S</strong><span>Nói ngọng?</span></div><div class="fast-item"><strong>T</strong><span>Gọi 115 ngay</span></div></div>
+<ol class="step-list">
+<li>Gọi <strong>115</strong> ngay — nói rõ "nghi đột quỵ".</li>
+<li>Giữ người bệnh <strong>yên tĩnh, không di chuyển</strong>.</li>
+<li><strong>Không</strong> cho ăn, uống hay dùng thuốc bất kỳ.</li>
+<li>Nếu bất tỉnh nhưng còn thở, đặt nằm nghiêng an toàn.</li>
+<li>Kiểm tra hô hấp mỗi phút. Thực hiện CPR nếu ngừng thở.</li>
+<li>Ở bên cạnh và mở khóa cửa để xe cấp cứu vào được.</li>
+</ol>
+<p class="muted" style="margin-top:10px;font-size:13px">⚠️ Hiệu quả điều trị cao nhất khi can thiệp trong vòng 4,5 giờ đầu.</p>`
+  },
+  cpr:{
+    en:`<h3 style="color:var(--danger)">CPR (Cardiopulmonary Resuscitation)</h3>
+<ol class="step-list">
+<li>Check scene safety. Call <strong>115</strong> or ask someone nearby to call.</li>
+<li>Check responsiveness: tap shoulders and shout <strong>"Are you OK?"</strong></li>
+<li>Lay the person on their back on a <strong>firm, flat surface</strong>.</li>
+<li>Tilt head back, lift chin — open the airway.</li>
+<li>Look, listen and feel for breathing for <strong>no more than 10 seconds</strong>.</li>
+<li>Place heel of hand on <strong>centre of chest</strong>. Other hand on top, fingers interlaced.</li>
+<li>Push down <strong>5–6 cm</strong> at <strong>100–120 compressions per minute</strong> (beat of "Stayin' Alive").</li>
+<li>After 30 compressions, give <strong>2 rescue breaths</strong> if trained. If not, continue compressions only.</li>
+<li>Continue until paramedics arrive or the person regains consciousness.</li>
+</ol>
+<p class="muted" style="margin-top:10px;font-size:13px">⚠️ Compression-only CPR (no rescue breaths) is still highly effective and recommended if you are untrained.</p>`,
+    vi:`<h3 style="color:var(--danger)">CPR (Hồi sinh tim phổi)</h3>
+<ol class="step-list">
+<li>Xác nhận an toàn hiện trường. Gọi <strong>115</strong> hoặc nhờ người xung quanh gọi.</li>
+<li>Kiểm tra phản ứng: vỗ vai và hét <strong>"Bạn có nghe thấy không?"</strong></li>
+<li>Đặt nạn nhân nằm ngửa trên <strong>bề mặt phẳng, cứng</strong>.</li>
+<li>Ngửa đầu, nâng cằm — mở thông đường thở.</li>
+<li>Nhìn-nghe-cảm nhận hô hấp không quá <strong>10 giây</strong>.</li>
+<li>Đặt gót tay vào <strong>giữa ngực</strong>, tay kia chồng lên, đan ngón.</li>
+<li>Ấn sâu <strong>5–6 cm</strong>, tốc độ <strong>100–120 lần/phút</strong>.</li>
+<li>Sau 30 lần ép, thổi <strong>2 hơi cấp cứu</strong> nếu đã được đào tạo. Nếu không, tiếp tục ép ngực.</li>
+<li>Tiếp tục đến khi xe cấp cứu đến hoặc nạn nhân hồi phục.</li>
+</ol>
+<p class="muted" style="margin-top:10px;font-size:13px">⚠️ Chỉ ép ngực (không thổi ngạt) vẫn rất hiệu quả và được khuyến nghị nếu bạn chưa được đào tạo.</p>`
+  },
+  choking:{
+    en:`<h3 style="color:var(--danger)">Choking – Heimlich Manoeuvre</h3>
+<ol class="step-list">
+<li>Ask <strong>"Are you choking?"</strong> — if they can cough or speak, encourage coughing.</li>
+<li>If they cannot cough, speak or breathe — call <strong>115</strong> and act immediately.</li>
+<li>Lean them forward and give <strong>5 firm back blows</strong> between shoulder blades with the heel of your hand.</li>
+<li>If back blows fail — stand behind them, place one foot forward for stability.</li>
+<li>Make a fist, place thumb side just above the navel and below the breastbone.</li>
+<li>Grasp your fist with other hand, give <strong>5 sharp inward-and-upward thrusts</strong>.</li>
+<li>Alternate 5 back blows and 5 abdominal thrusts until object is dislodged or help arrives.</li>
+<li>If person becomes unresponsive — lower them to the ground and start <strong>CPR</strong>.</li>
+</ol>
+<p class="muted" style="margin-top:10px;font-size:13px">⚠️ For infants under 1 year: use 5 back blows + 5 chest thrusts (not abdominal thrusts).</p>`,
+    vi:`<h3 style="color:var(--danger)">Hóc dị vật – Thủ thuật Heimlich</h3>
+<ol class="step-list">
+<li>Hỏi <strong>"Bạn có bị hóc không?"</strong> — nếu còn ho hoặc nói được, động viên ho mạnh.</li>
+<li>Nếu không thể ho, nói hoặc thở — gọi <strong>115</strong> và hành động ngay.</li>
+<li>Cho cúi người về phía trước và vỗ <strong>5 cái mạnh</strong> vào giữa hai xương bả vai bằng gót bàn tay.</li>
+<li>Nếu không hiệu quả — đứng phía sau, đặt một chân về phía trước để vững.</li>
+<li>Nắm tay, đặt ngón cái lên ngay trên rốn và dưới xương ức.</li>
+<li>Tay kia nắm chặt tay vừa đặt, thực hiện <strong>5 cái đẩy mạnh vào trong và lên trên</strong>.</li>
+<li>Xen kẽ 5 vỗ lưng và 5 đẩy bụng cho đến khi dị vật ra hoặc có cấp cứu.</li>
+<li>Nếu nạn nhân bất tỉnh — hạ xuống đất và bắt đầu <strong>CPR</strong>.</li>
+</ol>
+<p class="muted" style="margin-top:10px;font-size:13px">⚠️ Với trẻ dưới 1 tuổi: dùng 5 vỗ lưng + 5 ép ngực (không ép bụng).</p>`
+  }
 };
 
 const translations = {
@@ -2042,6 +2360,8 @@ function openPage(pageId) {
   }
   closeMobileSidebar();
   window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (pageId === 'profile') loadProfile();
+  if (pageId === 'history') renderHistory();
   if (isHealthCheckActive) saveHealthCheckDraft(pageId);
 }
 
@@ -2075,7 +2395,8 @@ function saveHealthCheckDraft(pageId) {
   }
 }
 function showHealthCheckResumePrompt() {
-  if (readHealthCheckDraft()) showModal('resumeCheckModal');
+  const draft=readHealthCheckDraft();
+  if (draft && draft.selectedZones && draft.selectedZones.length > 0) showModal('resumeCheckModal');
 }
 function resumeCheckDraft() {
   const draft = readHealthCheckDraft();
@@ -2712,6 +3033,18 @@ async function goToResult(apiResponse, ageOverride = null) {
   showResultMain();
   setCheckActive(false);
   try { sessionStorage.removeItem(HEALTH_CHECK_DRAFT_KEY); } catch (e) {}
+  try {
+    const now=new Date();
+    const badge=document.getElementById('resultDiseaseName')?.innerText?.trim()||'';
+    const area=document.getElementById('resultBody')?.innerText?.trim()||'';
+    const ans=document.getElementById('resultAnswers')?.innerText?.trim()||'';
+    const note=area+(ans?' · '+ans.slice(0,60):'');
+    saveHistoryEntry({
+      vi:{date:now.toLocaleDateString('vi-VN',{day:'numeric',month:'long',year:'numeric'}),note,badge},
+      en:{date:now.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'}),note,badge},
+      ts:now.getTime()
+    });
+  } catch(e) {}
   openPage('results');
 }
 function submitAssessmentAge() {
@@ -2802,8 +3135,14 @@ function openDiseaseDetail(id) {
   if (!d) return;
   const detail = document.getElementById('diseaseDetailCard');
   if (!detail._returnParent) { detail._returnParent = detail.parentNode; detail._returnNext = detail.nextSibling; }
-  document.getElementById('detailTitle').textContent = d[currentLang].name;
-  document.getElementById('detailContent').textContent = d[currentLang].detail;
+  const lang=d[currentLang];
+  document.getElementById('detailTitle').textContent = lang.name;
+  document.getElementById('detailContent').innerHTML = [
+    lang.symptoms ? `<div class='detail-section'><strong>${currentLang==='vi'?'Triệu chứng':'Symptoms'}</strong><p>${lang.symptoms}</p></div>` : '',
+    lang.cause    ? `<div class='detail-section'><strong>${currentLang==='vi'?'Nguyên nhân':'Causes'}</strong><p>${lang.cause}</p></div>` : '',
+    lang.treatment? `<div class='detail-section'><strong>${currentLang==='vi'?'Điều trị':'Treatment'}</strong><p>${lang.treatment}</p></div>` : '',
+    lang.see_doctor?`<div class='detail-section warn'><strong>${currentLang==='vi'?'Khi nào cần gặp bác sĩ':'When to see a doctor'}</strong><p>${lang.see_doctor}</p></div>` : ''
+  ].join('');
   document.body.appendChild(detail);
   detail.style.display = 'block'; detail.classList.add('disease-detail-modal'); detail.focus({ preventScroll: true });
   document.body.style.overflow = 'hidden';
@@ -2815,9 +3154,14 @@ function closeDiseaseDetail() {
   if (detail._returnParent) detail._returnParent.insertBefore(detail, detail._returnNext);
 }
 function renderHistory() {
-  document.getElementById('historyList').innerHTML = HISTORY_DATA.map(h => {
-    const t = h[currentLang];
-    return `<div class="history-item"><div><strong>${t.date}</strong><p class="muted" style="margin:3px 0 0;font-size:13px">${t.note}</p></div><span class="history-badge">${t.badge}</span></div>`;
+  const history=getHistoryData();
+  if(!history.length){
+    document.getElementById('historyList').innerHTML=`<p class="muted" style="padding:16px;text-align:center">${currentLang==='vi'?'Chưa có lịch sử kiểm tra nào.':'No health checks recorded yet.'}</p>`;
+    return;
+  }
+  document.getElementById('historyList').innerHTML=history.map(h=>{
+    const t=h[currentLang]||h.vi||h.en||{};
+    return `<div class="history-item"><div><strong>${t.date||''}</strong><p class="muted" style="margin:3px 0 0;font-size:13px">${t.note||''}</p></div><span class="history-badge">${t.badge||''}</span></div>`;
   }).join('');
 }
 function openLesson(id) {
@@ -2850,7 +3194,13 @@ document.addEventListener('keydown', event => {
   if (event.key === 'Escape' && document.getElementById('diseaseDetailCard')?.classList.contains('disease-detail-modal')) closeDiseaseDetail();
 });
 function requestLocation() {
-  document.getElementById('locationStatus').innerText = currentLang === 'vi' ? 'Đang lấy vị trí...' : 'Getting location...';
+  const status=document.getElementById('locationStatus');
+  status.innerText=currentLang==='vi'?'Đang lấy vị trí...':'Getting location...';
+  if (!navigator.geolocation) { status.innerText=currentLang==='vi'?'Trình duyệt không hỗ trợ định vị.':'Geolocation not supported.'; return; }
+  navigator.geolocation.getCurrentPosition(
+    (pos)=>{ status.innerText=currentLang==='vi'?`✅ Đã lấy vị trí (${pos.coords.latitude.toFixed(4)}, ${pos.coords.longitude.toFixed(4)}). Danh sách bên dưới là tham khảo.`:`✅ Location retrieved (${pos.coords.latitude.toFixed(4)}, ${pos.coords.longitude.toFixed(4)}). List below is for reference.`; },
+    ()=>{ status.innerText=currentLang==='vi'?'Không thể lấy vị trí. Vui lòng kiểm tra cài đặt trình duyệt.':'Could not get location. Please check browser settings.'; }
+  );
 }
 function openEmergency() {
   document.getElementById('emSelectView').style.display = 'block';
@@ -2894,7 +3244,38 @@ function saveProfile() {
   isProfileCompleted = true; skippedProfile = false;
   document.getElementById('topUserName').innerText = name;
   if (!document.getElementById('topAvatar').querySelector('img')) document.getElementById('topAvatar').innerText = name.charAt(0).toUpperCase();
+  try {
+    localStorage.setItem('hg_profile_v1', JSON.stringify({
+      name: document.getElementById('profileName').value.trim(),
+      age: document.getElementById('profileAge').value.trim(),
+      sex: document.getElementById('profileSex').value,
+      height: document.getElementById('profileHeight').value.trim(),
+      weight: document.getElementById('profileWeight').value.trim(),
+      conditions: document.getElementById('profileConditions').value.trim(),
+      allergies: document.getElementById('profileAllergies').value.trim(),
+      meds: document.getElementById('profileMeds').value.trim(),
+      family: document.getElementById('profileFamily').value.trim()
+    }));
+  } catch(e) {}
   showMessage(currentLang === 'vi' ? 'Thành công' : 'Success', translations[currentLang].profileSaved);
+}
+
+function loadProfile() {
+  try {
+    const d = JSON.parse(localStorage.getItem('hg_profile_v1') || 'null');
+    if (!d) return;
+    const set=(id,v)=>{ const el=document.getElementById(id); if(el&&v!==undefined) el.value=v; };
+    set('profileName',d.name); set('profileAge',d.age); set('profileSex',d.sex);
+    set('profileHeight',d.height); set('profileWeight',d.weight);
+    set('profileConditions',d.conditions); set('profileAllergies',d.allergies);
+    set('profileMeds',d.meds); set('profileFamily',d.family);
+    if (d.name) {
+      isProfileCompleted = true;
+      document.getElementById('topUserName').innerText = d.name;
+      const av=document.getElementById('topAvatar');
+      if (av && !av.querySelector('img')) av.innerText = d.name.charAt(0).toUpperCase();
+    }
+  } catch(e) {}
 }
 
 function splitBodyMapRegions() {
@@ -3172,6 +3553,7 @@ renderHistory();
 document.getElementById('aiChatInput').addEventListener('keypress', e => { if (e.key === 'Enter') sendAIChatMessage(); });
 changeLanguage('vi');
 window.addEventListener('beforeunload', () => saveHealthCheckDraft());
+loadProfile();
 showHealthCheckResumePrompt();
 
 </script>
